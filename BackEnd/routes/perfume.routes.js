@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const {getPerfumes} = require("../Controllers/Perfume.controller.js");
+const { getPerfumes } = require("../Controllers/Perfume.controller.js");
 
 router.get("/", getPerfumes);
 

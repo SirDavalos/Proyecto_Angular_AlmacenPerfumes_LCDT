@@ -2,7 +2,7 @@ const pool = require("../db/conexion.js");
 
 async function getAllPerfumes() {
     try {
-        const [rows] = await pool.query("SELECT * FROM")
+        const [rows] = await pool.query("SELECT * FROM perfumes")
         return rows;
     } catch (error) {
         console.error("Error al conectarse con al base de datos", error);

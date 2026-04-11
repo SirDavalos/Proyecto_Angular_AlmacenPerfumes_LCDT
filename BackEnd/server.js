@@ -3,7 +3,7 @@ require('dotenv').config({ override: true });
 const express = require('express');
 const cors = require('cors');
 
-const booksRoutes = require('./routes/perfume.routes.js');
+const perfumesRoutes = require('./routes/perfume.routes.js');
 const pool = require('./db/conexion'); // <-- Importamos la conexión
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
 });
 
 // Rutas principales
-app.use('/api/perfumes', booksRoutes);
+app.use('/api/perfumes', perfumesRoutes);
 
 // Funcion que hace una consulta de prueba mínima que
 // confirma que todo el circuito conexión → consulta → respuesta está funcionando

@@ -17,7 +17,7 @@
         @for(opcion of opciones.controls; track $index; let i = $index;){
             <div>
                 <label class="form-label" for="opcion-{{ i }}">{{formArrayNombre[i]}}:</label><br>
-                <input class="form-input" id="opcion-{{ i }}" type="text" formControlName="i"/>
+                <input class="form-control" id="opcion-{{ i }}" type="text" formControlName="i"/>
             </div>
         }
     </div>

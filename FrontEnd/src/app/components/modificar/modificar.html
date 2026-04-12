@@ -1,1 +1,41 @@
 <p>modificar works!</p>
+
+<form>
+    <div class="mb-3">
+        <input type="checkbox" class="form-check-input" id="check1">
+        <label for="check1" class="form-check-label"></label>
+    </div>
+    <div class="mb-3">
+        <input type="checkbox" class="form-check-input" id="check2">
+        <label for="check2" class="form-check-label"></label>
+    </div>
+    <div class="mb-3">
+        <input type="checkbox" class="form-check-input" id="check3">
+        <label for="check3" class="form-check-label"></label>
+    </div>
+    <div class="mb-3">
+        <input type="checkbox" class="form-check-input" id="check4">
+        <label for="check4" class="form-check-label"></label>
+    </div>
+    <div class="mb-3">
+        <input type="checkbox" class="form-check-input" id="check5">
+        <label for="check5" class="form-check-label"></label>
+    </div>
+    <div class="mb-3">
+        <input type="checkbox" class="form-check-input" id="check6">
+        <label for="check6" class="form-check-label"></label>
+    </div>
+    <div class="mb-3">
+        <input type="checkbox" class="form-check-input" id="check7">
+        <label for="check7" class="form-check-label"></label>
+    </div>
+</form>
+
+<form formArrayName="modificarForm" class="w-75 container my-3">
+    @for(opcion of opciones.controls; track $index; let i = $index){
+        <div>
+            <label for="opcion-{{ i }}">{{ opcion.nombre }}</label>
+            <input id="opcion-{{ i }}" [type]="opcion.tipo" [formControlName]="i"/>
+        </div>
+    }
+</form>

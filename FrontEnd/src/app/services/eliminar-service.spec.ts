@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { Modificar } from './modificar';
+import { EliminarService } from './eliminar-service';
 
-describe('Modificar', () => {
-  let service: Modificar;
+describe('EliminarService', () => {
+  let service: EliminarService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(Modificar);
+    service = TestBed.inject(EliminarService);
   });
 
   it('should be created', () => {

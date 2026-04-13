@@ -1,0 +1,8 @@
+.navbar{
+    background-color: var(--primary-color-subtle);
+    color: var(--light-color);
+}
+
+.nav-link{
+    color: var(--light-color);
+}

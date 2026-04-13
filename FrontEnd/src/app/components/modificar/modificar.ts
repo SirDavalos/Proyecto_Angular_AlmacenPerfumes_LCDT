@@ -1,9 +1,85 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { FormsModule, FormBuilder, FormArray, ReactiveFormsModule } from '@angular/forms';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { Perfume } from '../../interfaces/perfume';
 
 @Component({
   selector: 'app-modificar',
-  imports: [],
+  imports: [FormsModule, ReactiveFormsModule, MatCheckboxModule],
   templateUrl: './modificar.html',
   styleUrl: './modificar.css',
 })
-export class Modificar {}
+export class Modificar {
+  // Form Reactive para preguntar que quiere modificar
+  private readonly formBuilder = inject(FormBuilder);
+
+  // Checkboxes
+  readonly toModificar = this.formBuilder.group({
+    nombre: false,
+    precio: false,
+    cantidad: false,
+    marca: false,
+    proveedor: false,
+    tipo: false,
+    linea: false,
+    aroma: false
+  });
+
+  // Form Reactive con Array (para que pueda tener las opciones necesarias)
+  formArray = this.formBuilder.array([]);
+  formArrayNombre: Array<string> = [];
+
+  modificarForm = this.formBuilder.group({
+    opciones: this.formArray
+  });
+
+  // Agregar opciones segun los checkbox
+  public submitToMod(){
+    // Elimina lo que había anteriormente
+    while(this.formArray.length !== 0){
+      this.formArrayNombre.pop();
+      this.formArray.removeAt(0);
+    }
+
+    if(this.toModificar.value.nombre){
+      this.formArrayNombre.push("Nombre");
+      this.formArray.push(this.formBuilder.control(''));
+    }
+    if(this.toModificar.value.precio){
+      this.formArrayNombre.push("Precio");
+      this.formArray.push(this.formBuilder.control(0));
+    }
+    if(this.toModificar.value.cantidad){
+      this.formArrayNombre.push("Cantidad");
+      this.formArray.push(this.formBuilder.control(0));
+    }
+    if(this.toModificar.value.marca){
+      this.formArrayNombre.push("Marca");
+      this.formArray.push(this.formBuilder.control(''));
+    }
+    if(this.toModificar.value.proveedor){
+      this.formArrayNombre.push("Proveedor");
+      this.formArray.push(this.formBuilder.control(''));
+    }
+    if(this.toModificar.value.tipo){
+      this.formArrayNombre.push("Tipo");
+      this.formArray.push(this.formBuilder.control(''));
+    }
+    if(this.toModificar.value.linea){
+      this.formArrayNombre.push("Línea");
+      this.formArray.push(this.formBuilder.control(''));
+    }
+    if(this.toModificar.value.aroma){
+      this.formArrayNombre.push("Aroma");
+      this.formArray.push(this.formBuilder.control(''));
+    }
+
+    console.log(this.formArrayNombre);
+    console.log(this.formArray);
+  }
+
+  // Recupera el Array de Opciones para el HTML
+  get opciones() {
+    return this.modificarForm.get('opciones') as FormArray;
+  }
+}

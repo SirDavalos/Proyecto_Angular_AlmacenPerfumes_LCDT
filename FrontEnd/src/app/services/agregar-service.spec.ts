@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { Obtener } from './obtener';
+import { AgregarService } from './agregar-service';
 
-describe('Obtener', () => {
-  let service: Obtener;
+describe('AgregarService', () => {
+  let service: AgregarService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(Obtener);
+    service = TestBed.inject(AgregarService);
   });
 
   it('should be created', () => {

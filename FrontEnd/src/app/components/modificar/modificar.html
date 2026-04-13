@@ -1,1 +1,24 @@
-<p>modificar works!</p>
+<form [formGroup]="toModificar">
+    <h1>Que desea modificar</h1>
+    <mat-checkbox formControlName="nombre">Nombre</mat-checkbox>
+    <mat-checkbox formControlName="precio">Precio</mat-checkbox>
+    <mat-checkbox formControlName="cantidad">Cantidad</mat-checkbox>
+    <mat-checkbox formControlName="marca">Marca</mat-checkbox>
+    <mat-checkbox formControlName="proveedor">Proveedor</mat-checkbox>
+    <mat-checkbox formControlName="tipo">Tipo</mat-checkbox>
+    <mat-checkbox formControlName="linea">Línea</mat-checkbox>
+    <mat-checkbox formControlName="aroma">Aroma</mat-checkbox>
+    <br>
+    <button class="btn" type="button" (click)="submitToMod()">Enviar</button>
+</form>
+
+<form [formGroup]="modificarForm" class="w-75 container my-3">
+    <div formArrayName="opciones">
+        @for(opcion of opciones.controls; track $index; let i = $index;){
+            <div>
+                <label class="form-label" for="opcion-{{ i }}">{{formArrayNombre[i]}}:</label><br>
+                <input class="form-control" id="opcion-{{ i }}" type="text" formControlName="i"/>
+            </div>
+        }
+    </div>
+</form>

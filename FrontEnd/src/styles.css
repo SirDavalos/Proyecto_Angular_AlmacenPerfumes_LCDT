@@ -2,11 +2,12 @@
     --light-color: #F7F6EB;
     --dark-color: #160105;
     --primary-color: #85192F;
-    --primary-color-sublte: #CEABB1;
+    --primary-color-subtle: #CEABB1;
     --secondary-color: #428270;
     --secondary-color-subtle: #B4F0C7;
 }
 
-*{
+body{
+    height: 100vh;
     background-color: var(--light-color) !important;
 }

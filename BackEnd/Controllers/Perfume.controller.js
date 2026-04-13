@@ -16,12 +16,12 @@ const getPerfumes = async (req, res) => {
 const postPerfumes = async (req, res) => { 
   try { 
     console.log(req.body); 
-    const { codigo, nombre, precio, cantidad, marca, proveedor, tipo, linea } = req.body; 
-    if (!codigo || !nombre || !precio || !cantidad || !marca || !proveedor || !tipo || !linea) 
+    const { id, nombre, precio, cantidad, marca, proveedor, tipo, linea, aroma_salida, aroma_corazon, aroma_fondo } = req.body; 
+    if (!id || !nombre || !precio || !cantidad || !marca || !proveedor || !tipo || !linea , aroma_salida, aroma_corazon, aroma_fondo) 
       return res.status(400).json({ mensaje: 'Faltan datos obligatorios' }); 
  
     console.log("1"); 
-    const fila_insertada = await PerfumeModel.insertPerfume(codigo, nombre, precio, cantidad, marca, proveedor, tipo, linea); 
+    const fila_insertada = await PerfumeModel.insertPerfume(id, nombre, precio, cantidad, marca, proveedor, tipo, linea, aroma_salida, aroma_corazon, aroma_fondo); 
     res.status(201).json({ mensaje: 'Perfume agregado', fila_insertada }); 
     console.log("2"); 
   } catch (error) { 
@@ -30,13 +30,13 @@ const postPerfumes = async (req, res) => {
   } 
 }; 
 
-// PUT /api/perfumes/actualizarPerfume/:codigo
+// PUT /api/perfumes/actualizarPerfume/:id
 const updatePerfume = async (req, res) => { 
   try { 
-    const { codigo } = req.params; 
-    const { nombre, precio, cantidad, marca, proveedor, tipo, linea } = req.body; 
+    const { id } = req.params; 
+    const { nombre, precio, cantidad, marca, proveedor, tipo, linea, aroma_salida, aroma_corazon, aroma_fondo } = req.body; 
  
-    const filas = await PerfumeModel.updatePerfume(codigo, nombre, precio, cantidad, marca, proveedor, tipo, linea); 
+    const filas = await PerfumeModel.updatePerfume(id, nombre, precio, cantidad, marca, proveedor, tipo, linea, aroma_salida, aroma_corazon, aroma_fondo); 
     if (filas === 0) 
       return res.status(404).json({ mensaje: 'Perfume no encontrado' }); 
  
@@ -47,11 +47,11 @@ const updatePerfume = async (req, res) => {
   } 
 }; 
  
-// DELETE /api/perfumes/borrarPerfume/:codigo 
+// DELETE /api/perfumes/borrarPerfume/:id 
 const deletePerfume = async (req, res) => { 
   try { 
-    const { codigo } = req.params; 
-    const filas = await PerfumeModel.deletePerfume(codigo); 
+    const { id } = req.params; 
+    const filas = await PerfumeModel.deletePerfume(id); 
  
     if (filas === 0) 
       return res.status(404).json({ mensaje: 'Perfume no encontrado' }); 

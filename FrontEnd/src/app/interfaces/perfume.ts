@@ -7,9 +7,7 @@ export interface Perfume {
     proveedor: string,
     tipo: string,
     linea: string,
-    aroma: Array<{
-        salida: string,
-        corazon: string,
-        fondo: string
-    }>
+    aroma_salida: string,
+    aroma_corazon: string,
+    aroma_fondo: string
 }

@@ -5,7 +5,7 @@ const { getPerfumes, postPerfumes, updatePerfume, deletePerfume } = require("../
 
 router.get("/getPerfumes", getPerfumes);
 router.post('/insertPerfume', postPerfumes);
-router.put('/actualizarPerfume/:codigo', updatePerfume);
-router.delete('/borrarPerfume/:codigo', deletePerfume);
+router.put('/actualizarPerfume/:id', updatePerfume);
+router.delete('/borrarPerfume/:id', deletePerfume);
 
 module.exports = router;

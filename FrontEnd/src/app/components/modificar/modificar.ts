@@ -2,6 +2,8 @@ import { Component, inject } from '@angular/core';
 import { FormsModule, FormBuilder, FormArray, ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { Perfume } from '../../interfaces/perfume';
+import { ObtenerService } from '../../services/obtener-service';
+import { ModificarService } from '../../services/modificar-service';
 
 @Component({
   selector: 'app-modificar',
@@ -9,6 +11,7 @@ import { Perfume } from '../../interfaces/perfume';
   templateUrl: './modificar.html',
   styleUrl: './modificar.css',
 })
+
 export class Modificar {
   // Form Reactive para preguntar que quiere modificar
   private readonly formBuilder = inject(FormBuilder);

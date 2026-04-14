@@ -30,10 +30,6 @@ export class Eliminar {
     });
   }
 
-  ngOnInit(){
-    console.log(this.allProduct);
-  }
-
   elimProd(id:number){
 
   }

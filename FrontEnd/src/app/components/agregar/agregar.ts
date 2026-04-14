@@ -29,20 +29,28 @@ export class Agregar {
   mensaje: string = '';
 
   agregarProducto(): void {
-    this.servicio.agregarPerfume(this.producto);
-    this.mensaje = 'Producto agregado correctamente';
-    this.producto = {
-      id: 0,
-      nombre: '',
-      precio: 0,
-      cantidad: 0,
-      marca: '',
-      proveedor: '',
-      tipo: '',
-      linea: '',
-      aroma_salida: '',
-      aroma_corazon: '',
-      aroma_fondo: ''
-    };
+    this.servicio.agregarPerfume(this.producto).subscribe({
+      next: (respuesta) => {
+        this.mensaje = respuesta.mensaje;
+
+        this.producto = {
+          id: 0,
+          nombre: '',
+          precio: 0,
+          cantidad: 0,
+          marca: '',
+          proveedor: '',
+          tipo: '',
+          linea: '',
+          aroma_salida: '',
+          aroma_corazon: '',
+          aroma_fondo: ''
+        };
+      },
+      error: (error) => {
+        this.mensaje = 'Error al agregar producto';
+        console.error(error);
+      }
+    });
   }
 }

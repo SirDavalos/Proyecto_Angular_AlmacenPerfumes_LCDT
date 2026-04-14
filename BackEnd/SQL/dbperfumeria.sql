@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 14-04-2026 a las 00:13:53
+-- Servidor: 127.0.0.1:3306
+-- Tiempo de generación: 14-04-2026 a las 06:25:19
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -49,6 +49,26 @@ INSERT INTO `perfumes` (`id`, `Nombre`, `Precio`, `Cantidad`, `Marca`, `Proveedo
 (12345, 'Nautilus', 500, 6, 'Nautilus', 'Proveedor Ejemplo', 'Agua de tocador', 'Hombre', 'Aroma de salida ejemplo', 'Aroma corazon ejemplo', 'Aroma de fondo ejemplo'),
 (67890, 'Perfume 2', 650.5, 3, 'Perfumessss', 'Proveedor Ejemplo 2', 'Agua de tocador', 'Recta', 'Aroma de salida ejemplo 2', 'Aroma corazon ejemplo 2', 'Aroma de fondo ejemplo 2');
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `proveedores`
+--
+
+CREATE TABLE `proveedores` (
+  `IDProovedores` int(11) NOT NULL,
+  `Nombre` varchar(64) NOT NULL,
+  `Correo` varchar(64) NOT NULL,
+  `Telefono` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `proveedores`
+--
+
+INSERT INTO `proveedores` (`IDProovedores`, `Nombre`, `Correo`, `Telefono`) VALUES
+(1, 'Bellaroma', 'contacto@bellaroma.mx\r\n', '9931310889');
+
 --
 -- Índices para tablas volcadas
 --
@@ -58,6 +78,22 @@ INSERT INTO `perfumes` (`id`, `Nombre`, `Precio`, `Cantidad`, `Marca`, `Proveedo
 --
 ALTER TABLE `perfumes`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `proveedores`
+--
+ALTER TABLE `proveedores`
+  ADD PRIMARY KEY (`IDProovedores`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `proveedores`
+--
+ALTER TABLE `proveedores`
+  MODIFY `IDProovedores` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

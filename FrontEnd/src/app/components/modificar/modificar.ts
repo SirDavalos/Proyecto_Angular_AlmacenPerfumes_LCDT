@@ -74,8 +74,13 @@ export class Modificar {
       aroma_fondo: this.modificarForm.value.aroma_fondo
     };
 
-    this.modificarDB.modificarPerfume(newPerfume);
-
-    console.log("enviado: ", newPerfume);
+    this.modificarDB.modificarPerfume(newPerfume).subscribe({
+      next: (respuesta: any) => {
+        console.log(respuesta)
+      },
+      error: (error: any) => {
+        console.error("Error al modificar producto: ", error);
+      }
+    });
   }
 }

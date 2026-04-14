@@ -12,6 +12,7 @@ export class ModificarService {
   private url: string = 'http://localhost:3000/api/perfumes/actualizarPerfume';
 
   modificarPerfume(perfume: Perfume): Observable<any> {
-    return this.http.put(`${this.url}/${perfume.id}`, perfume);
+    console.log('Acceder Modify Service', perfume);
+    return this.http.put(`${this.url}/:${perfume.id}`, perfume);
   }
 }

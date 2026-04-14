@@ -12,7 +12,7 @@ async function getAllPerfumes() {
 
 async function insertPerfume(id, nombre, precio, cantidad, marca, proveedor, tipo, linea, aroma_salida, aroma_corazon, aroma_fondo) {
     const [result] = await pool.query(
-        'INSERT INTO perfumes (id, Nombre, Precio, Cantidad, Marca, Proveedor, Tipo, Linea, Aroma_Salida, Aroma_Corazon, Aroma_Fondo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+        'INSERT INTO perfumes (id, nombre, precio, cantidad, marca, proveedor, tipo, linea, aroma_salida, aroma_corazon, aroma_fondo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
         [id, nombre, precio, cantidad, marca, proveedor, tipo, linea, aroma_salida, aroma_corazon, aroma_fondo]
     );
     return result.affectedRows;
@@ -20,7 +20,7 @@ async function insertPerfume(id, nombre, precio, cantidad, marca, proveedor, tip
 
 async function updatePerfume(id, nombre, precio, cantidad, marca, proveedor, tipo, linea, aroma_salida, aroma_corazon, aroma_fondo) {
     const [result] = await pool.query(
-        'UPDATE perfumes SET Nombre = ?, Precio = ?, Cantidad = ?, Marca = ?, Proveedor = ?, Tipo = ?, Linea = ?, Aroma_Salida = ?, Aroma_Corazon = ?, Aroma_Fondo = ? WHERE id = ?',
+        'UPDATE perfumes SET nombre = ?, precio = ?, cantidad = ?, marca = ?, proveedor = ?, tipo = ?, linea = ?, aroma_salida = ?, aroma_corazon = ?, aroma_fondo = ? WHERE id = ?',
         [nombre, precio, cantidad, marca, proveedor, tipo, linea, aroma_salida, aroma_corazon, aroma_fondo, id]
     );
     return result.affectedRows;

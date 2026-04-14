@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 14-04-2026 a las 06:25:19
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 14-04-2026 a las 06:56:33
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -29,23 +29,23 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `perfumes` (
   `id` int(11) NOT NULL,
-  `Nombre` varchar(50) NOT NULL,
-  `Precio` float NOT NULL,
-  `Cantidad` int(11) NOT NULL,
-  `Marca` varchar(25) NOT NULL,
-  `Proveedor` varchar(30) NOT NULL,
-  `Tipo` varchar(25) NOT NULL,
-  `Linea` varchar(25) NOT NULL,
-  `Aroma_Salida` varchar(150) NOT NULL,
-  `Aroma_Corazon` varchar(150) NOT NULL,
-  `Aroma_Fondo` varchar(150) NOT NULL
+  `nombre` varchar(50) NOT NULL,
+  `precio` float NOT NULL,
+  `cantidad` int(11) NOT NULL,
+  `marca` varchar(25) NOT NULL,
+  `proveedor` varchar(30) NOT NULL,
+  `tipo` varchar(25) NOT NULL,
+  `linea` varchar(25) NOT NULL,
+  `aroma_salida` varchar(150) NOT NULL,
+  `aroma_corazon` varchar(150) NOT NULL,
+  `aroma_fondo` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `perfumes`
 --
 
-INSERT INTO `perfumes` (`id`, `Nombre`, `Precio`, `Cantidad`, `Marca`, `Proveedor`, `Tipo`, `Linea`, `Aroma_Salida`, `Aroma_Corazon`, `Aroma_Fondo`) VALUES
+INSERT INTO `perfumes` (`id`, `nombre`, `precio`, `cantidad`, `marca`, `proveedor`, `tipo`, `linea`, `aroma_salida`, `aroma_corazon`, `aroma_fondo`) VALUES
 (12345, 'Nautilus', 500, 6, 'Nautilus', 'Proveedor Ejemplo', 'Agua de tocador', 'Hombre', 'Aroma de salida ejemplo', 'Aroma corazon ejemplo', 'Aroma de fondo ejemplo'),
 (67890, 'Perfume 2', 650.5, 3, 'Perfumessss', 'Proveedor Ejemplo 2', 'Agua de tocador', 'Recta', 'Aroma de salida ejemplo 2', 'Aroma corazon ejemplo 2', 'Aroma de fondo ejemplo 2');
 
@@ -56,17 +56,17 @@ INSERT INTO `perfumes` (`id`, `Nombre`, `Precio`, `Cantidad`, `Marca`, `Proveedo
 --
 
 CREATE TABLE `proveedores` (
-  `IDProovedores` int(11) NOT NULL,
-  `Nombre` varchar(64) NOT NULL,
-  `Correo` varchar(64) NOT NULL,
-  `Telefono` varchar(10) NOT NULL
+  `idProveedor` int(11) NOT NULL,
+  `nombre` varchar(64) NOT NULL,
+  `correo` varchar(64) NOT NULL,
+  `telefono` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `proveedores`
 --
 
-INSERT INTO `proveedores` (`IDProovedores`, `Nombre`, `Correo`, `Telefono`) VALUES
+INSERT INTO `proveedores` (`idProveedor`, `nombre`, `correo`, `telefono`) VALUES
 (1, 'Bellaroma', 'contacto@bellaroma.mx\r\n', '9931310889');
 
 --
@@ -83,7 +83,7 @@ ALTER TABLE `perfumes`
 -- Indices de la tabla `proveedores`
 --
 ALTER TABLE `proveedores`
-  ADD PRIMARY KEY (`IDProovedores`);
+  ADD PRIMARY KEY (`idProveedor`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -93,7 +93,7 @@ ALTER TABLE `proveedores`
 -- AUTO_INCREMENT de la tabla `proveedores`
 --
 ALTER TABLE `proveedores`
-  MODIFY `IDProovedores` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idProveedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

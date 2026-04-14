@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormsModule, FormBuilder, FormArray, ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { Perfume } from '../../interfaces/perfume';
@@ -28,6 +28,9 @@ export class Modificar {
     aroma: false
   });
 
+  //Signals
+  signalMod = signal("Valor: ");
+
   // Form Reactive con Array (para que pueda tener las opciones necesarias)
   formArray = this.formBuilder.array([]);
   formArrayNombre: Array<string> = [];
@@ -45,40 +48,49 @@ export class Modificar {
     }
 
     if(this.toModificar.value.nombre){
+      this.signalMod.update((valor) => valor += ", Nombre");
       this.formArrayNombre.push("Nombre");
       this.formArray.push(this.formBuilder.control(''));
     }
     if(this.toModificar.value.precio){
+      this.signalMod.update((valor) => valor += ", precio");
       this.formArrayNombre.push("Precio");
       this.formArray.push(this.formBuilder.control(0));
     }
     if(this.toModificar.value.cantidad){
+      this.signalMod.update((valor) => valor += ", cantidad");
       this.formArrayNombre.push("Cantidad");
       this.formArray.push(this.formBuilder.control(0));
     }
     if(this.toModificar.value.marca){
+      this.signalMod.update((valor) => valor += ", marca");
       this.formArrayNombre.push("Marca");
       this.formArray.push(this.formBuilder.control(''));
     }
     if(this.toModificar.value.proveedor){
+      this.signalMod.update((valor) => valor += ", proveedor");
       this.formArrayNombre.push("Proveedor");
       this.formArray.push(this.formBuilder.control(''));
     }
     if(this.toModificar.value.tipo){
+      this.signalMod.update((valor) => valor += ", tipo");
       this.formArrayNombre.push("Tipo");
       this.formArray.push(this.formBuilder.control(''));
     }
     if(this.toModificar.value.linea){
+      this.signalMod.update((valor) => valor += ", linea");
       this.formArrayNombre.push("Línea");
       this.formArray.push(this.formBuilder.control(''));
     }
     if(this.toModificar.value.aroma){
+      this.signalMod.update((valor) => valor += ", aroma");
       this.formArrayNombre.push("Aroma");
       this.formArray.push(this.formBuilder.control(''));
     }
 
     console.log(this.formArrayNombre);
     console.log(this.formArray);
+    console.log("Valores a modificar: ", this.signalMod());
   }
 
   // Recupera el Array de Opciones para el HTML

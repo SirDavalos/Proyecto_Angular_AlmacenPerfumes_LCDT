@@ -7,6 +7,6 @@ const {getProveedor, postProveedores, updateProveedores, deleteProveedor } = req
 router.get("/getProveedor", getProveedor);
 router.post("/insertProovedor", postProveedores);
 router.put("/updateProveedores/:id", updateProveedores);
-router.delete("borrarProveedor/:id", deleteProveedor);
+router.delete("/borrarProveedor/:id", deleteProveedor);
 
 module.exports = router;

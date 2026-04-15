@@ -17,8 +17,10 @@ const postPerfumes = async (req, res) => {
   try { 
     console.log(req.body); 
     const { id, nombre, precio, cantidad, marca, proveedor, tipo, linea, aroma_salida, aroma_corazon, aroma_fondo } = req.body; 
-    if (!id || !nombre || !precio || !cantidad || !marca || !proveedor || !tipo || !linea , aroma_salida, aroma_corazon, aroma_fondo) 
-      return res.status(400).json({ mensaje: 'Faltan datos obligatorios' }); 
+    if (!id || !nombre || !precio || !cantidad || !marca || !proveedor || !tipo || !linea || !aroma_salida || !aroma_corazon || !aroma_fondo){
+      console.log(id, nombre, precio, cantidad, marca, proveedor, tipo, linea, aroma_corazon, aroma_fondo, aroma_salida);
+      return res.status(400).json({ mensaje: 'Faltan datos obligatorios' });
+    }
  
     console.log("1"); 
     const fila_insertada = await PerfumeModel.insertPerfume(id, nombre, precio, cantidad, marca, proveedor, tipo, linea, aroma_salida, aroma_corazon, aroma_fondo); 

@@ -1,1 +1,110 @@
-<p>agregar works!</p>
+<div class="container py-5">
+  <div class="card shadow-lg p-4 mx-auto" style="max-width: 500px;">
+    
+    <h2 class="text-center text fw-bold mb-4">
+      Agregar Producto
+    </h2>
+
+    <form #productoForm="ngForm" (ngSubmit)="agregarProducto()">
+
+      <div class="mb-3">
+        <label class="form-label fw-bold">Nombre</label>
+        <input
+          type="text"
+          class="form-control"
+          name="nombre"
+          [(ngModel)]="producto.nombre"
+          required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-bold">Precio</label>
+        <input
+          type="number"
+          class="form-control"
+          name="precio"
+          [(ngModel)]="producto.precio"
+          required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-bold">Cantidad</label>
+        <input
+          type="number"
+          class="form-control"
+          name="cantidad"
+          [(ngModel)]="producto.cantidad"
+          required>
+      </div>
+      
+      <div class="mb-3">
+        <label class="form-label fw-bold">Marca</label>
+        <input
+          type="text"
+          class="form-control"
+          name="marca"
+          [(ngModel)]="producto.marca"
+          required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-bold">Proveedor</label>
+        <input
+          type="text"
+          class="form-control"
+          name="Proveedor"
+          [(ngModel)]="producto.proveedor"
+          required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-bold">Tipo</label>
+        <input
+          type="text"
+          class="form-control"
+          name="tipo"
+          [(ngModel)]="producto.tipo"
+          required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-bold">Linea</label>
+        <input
+          type="text"
+          class="form-control"
+          name="linea"
+          [(ngModel)]="producto.linea"
+          required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-bold">Aroma Salida</label>
+        <input type="text" class="form-control" name="aroma_salida" [(ngModel)]="producto.aroma_salida" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-bold">Aroma Corazon</label>
+        <input type="text" class="form-control" name="aroma_corazon" [(ngModel)]="producto.aroma_corazon" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-bold">Aroma Fondo</label>
+        <input type="text" class="form-control" name="aroma_fondo" [(ngModel)]="producto.aroma_fondo" required>
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-pink w-100">
+        Guardar Producto
+      </button>
+
+    </form>
+
+    @if (mensaje !== '') {
+      <div class="alert alert-success mt-3 text-center">
+        {{ mensaje }}
+      </div>
+    }
+
+  </div>
+</div>

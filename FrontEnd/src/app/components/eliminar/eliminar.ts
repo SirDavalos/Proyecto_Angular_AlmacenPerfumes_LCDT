@@ -12,7 +12,7 @@ import { EliminarService } from '../../services/eliminar-service';
 
 export class Eliminar {
   private obtenerDB = inject(ObtenerService);
-  private eliminarProd = inject(EliminarService);
+  private eliminarDB = inject(EliminarService);
   private cdr = inject(ChangeDetectorRef);
 
   allProduct: Array<Perfume> = [];
@@ -22,7 +22,6 @@ export class Eliminar {
       next: (respuesta: Perfume[]) => {
         this.allProduct = respuesta;
         this.cdr.markForCheck();
-        console.log("AllProduct: ",this.allProduct);
       },
       error: (error: any) => {
         console.error('Error al recuperar datos: ', error);
@@ -30,11 +29,14 @@ export class Eliminar {
     });
   }
 
-  ngOnInit(){
-    console.log(this.allProduct);
-  }
-
   elimProd(id:number){
-
+    this.eliminarDB.eliminarPerfume(id).subscribe({
+      next: (respuesta: any) =>{
+        console.log(respuesta);
+      },
+      error: (error: any) => {
+        console.error('Error al borrar producto: ', error);
+      }
+    })
   }
 }

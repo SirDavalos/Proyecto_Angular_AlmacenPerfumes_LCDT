@@ -17,8 +17,10 @@ const postPerfumes = async (req, res) => {
   try { 
     console.log(req.body); 
     const { id, nombre, precio, cantidad, marca, proveedor, tipo, linea, aroma_salida, aroma_corazon, aroma_fondo } = req.body; 
-    if (!id || !nombre || !precio || !cantidad || !marca || !proveedor || !tipo || !linea , aroma_salida, aroma_corazon, aroma_fondo) 
-      return res.status(400).json({ mensaje: 'Faltan datos obligatorios' }); 
+    if (!id || !nombre || !precio || !cantidad || !marca || !proveedor || !tipo || !linea || !aroma_salida || !aroma_corazon || !aroma_fondo){
+      console.log(id, nombre, precio, cantidad, marca, proveedor, tipo, linea, aroma_corazon, aroma_fondo, aroma_salida);
+      return res.status(400).json({ mensaje: 'Faltan datos obligatorios' });
+    }
  
     console.log("1"); 
     const fila_insertada = await PerfumeModel.insertPerfume(id, nombre, precio, cantidad, marca, proveedor, tipo, linea, aroma_salida, aroma_corazon, aroma_fondo); 
@@ -31,16 +33,20 @@ const postPerfumes = async (req, res) => {
 }; 
 
 // PUT /api/perfumes/actualizarPerfume/:id
-const updatePerfume = async (req, res) => { 
+const updatePerfume = async (req, res) => {
+  console.log("** ENTRAR UPDATE **");
   try { 
     const { id } = req.params; 
     const { nombre, precio, cantidad, marca, proveedor, tipo, linea, aroma_salida, aroma_corazon, aroma_fondo } = req.body; 
  
     const filas = await PerfumeModel.updatePerfume(id, nombre, precio, cantidad, marca, proveedor, tipo, linea, aroma_salida, aroma_corazon, aroma_fondo); 
-    if (filas === 0) 
-      return res.status(404).json({ mensaje: 'Perfume no encontrado' }); 
+    if (filas === 0) {
+      console.log('Perfume no encontrado');
+      return res.status(404).json({ mensaje: 'Perfume no encontrado' });
+    }
  
     res.json({ mensaje: 'Perfume actualizado correctamente' }); 
+    console.log('Perfume actualizado correctamente');
   } catch (error) { 
     console.error('Error al actualizar perfume:', error); 
     res.status(500).json({ mensaje: 'Error al actualizar perfume' }); 

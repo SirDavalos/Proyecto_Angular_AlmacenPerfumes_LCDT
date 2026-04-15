@@ -1,5 +1,5 @@
-import { Component, inject, signal } from '@angular/core';
-import { FormsModule, FormBuilder, FormArray, ReactiveFormsModule } from '@angular/forms';
+import { ChangeDetectorRef, Component, inject } from '@angular/core';
+import { FormsModule, FormBuilder, FormArray, ReactiveFormsModule, FormGroup, Validators } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { Perfume } from '../../interfaces/perfume';
 import { ObtenerService } from '../../services/obtener-service';
@@ -13,88 +13,74 @@ import { ModificarService } from '../../services/modificar-service';
 })
 
 export class Modificar {
+  private obtenerDB = inject(ObtenerService);
+  private modificarDB = inject(ModificarService);
+  private cdr = inject(ChangeDetectorRef);
+
   // Form Reactive para preguntar que quiere modificar
   private readonly formBuilder = inject(FormBuilder);
+  modificarForm: FormGroup = new FormGroup({});
 
-  // Checkboxes
-  readonly toModificar = this.formBuilder.group({
-    nombre: false,
-    precio: false,
-    cantidad: false,
-    marca: false,
-    proveedor: false,
-    tipo: false,
-    linea: false,
-    aroma: false
-  });
+  allProduct: Array<Perfume> = [];
+  modID: number = 0;
+  showMod: boolean = false;
 
-  //Signals
-  signalMod = signal("Valor: ");
-
-  // Form Reactive con Array (para que pueda tener las opciones necesarias)
-  formArray = this.formBuilder.array([]);
-  formArrayNombre: Array<string> = [];
-
-  modificarForm = this.formBuilder.group({
-    opciones: this.formArray
-  });
-
-  // Agregar opciones segun los checkbox
-  public submitToMod(){
-    // Elimina lo que había anteriormente
-    while(this.formArray.length !== 0){
-      this.formArrayNombre.pop();
-      this.formArray.removeAt(0);
-    }
-
-    if(this.toModificar.value.nombre){
-      this.signalMod.update((valor) => valor += ", Nombre");
-      this.formArrayNombre.push("Nombre");
-      this.formArray.push(this.formBuilder.control(''));
-    }
-    if(this.toModificar.value.precio){
-      this.signalMod.update((valor) => valor += ", precio");
-      this.formArrayNombre.push("Precio");
-      this.formArray.push(this.formBuilder.control(0));
-    }
-    if(this.toModificar.value.cantidad){
-      this.signalMod.update((valor) => valor += ", cantidad");
-      this.formArrayNombre.push("Cantidad");
-      this.formArray.push(this.formBuilder.control(0));
-    }
-    if(this.toModificar.value.marca){
-      this.signalMod.update((valor) => valor += ", marca");
-      this.formArrayNombre.push("Marca");
-      this.formArray.push(this.formBuilder.control(''));
-    }
-    if(this.toModificar.value.proveedor){
-      this.signalMod.update((valor) => valor += ", proveedor");
-      this.formArrayNombre.push("Proveedor");
-      this.formArray.push(this.formBuilder.control(''));
-    }
-    if(this.toModificar.value.tipo){
-      this.signalMod.update((valor) => valor += ", tipo");
-      this.formArrayNombre.push("Tipo");
-      this.formArray.push(this.formBuilder.control(''));
-    }
-    if(this.toModificar.value.linea){
-      this.signalMod.update((valor) => valor += ", linea");
-      this.formArrayNombre.push("Línea");
-      this.formArray.push(this.formBuilder.control(''));
-    }
-    if(this.toModificar.value.aroma){
-      this.signalMod.update((valor) => valor += ", aroma");
-      this.formArrayNombre.push("Aroma");
-      this.formArray.push(this.formBuilder.control(''));
-    }
-
-    console.log(this.formArrayNombre);
-    console.log(this.formArray);
-    console.log("Valores a modificar: ", this.signalMod());
+  constructor(){
+    this.obtenerDB.getDatos().subscribe({
+      next: (respuesta: Perfume[]) => {
+        this.allProduct = respuesta;
+        this.cdr.markForCheck();
+        console.log("AllProduct: ",this.allProduct);
+      },
+      error: (error: any) => {
+        console.error('Error al recuperar datos: ', error);
+      }
+    });
   }
 
-  // Recupera el Array de Opciones para el HTML
-  get opciones() {
-    return this.modificarForm.get('opciones') as FormArray;
+  public selectModProd(id: number) {
+    let modPerfume = this.allProduct.find((prod) => prod.id == id);
+
+    this.modID = id;
+    
+    this.modificarForm = this.formBuilder.group({
+      nombre: [modPerfume!.nombre, []],
+      precio: [modPerfume!.precio, [Validators.min]],
+      cantidad: [modPerfume!.cantidad, []],
+      marca: [modPerfume!.marca, []],
+      proveedor: [modPerfume!.proveedor, [Validators.required]],
+      tipo: [modPerfume!.tipo, [Validators.required]],
+      linea: [modPerfume!.linea, [Validators.required]],
+      aroma_salida: [modPerfume!.aroma_salida, [Validators.required]],
+      aroma_corazon: [modPerfume!.aroma_corazon, [Validators.required]],
+      aroma_fondo: [modPerfume!.aroma_fondo, [Validators.required]],
+    });
+
+    this.showMod = true;
+  }
+  
+  public onModify(id: number){
+    let newPerfume: Perfume = {
+      id: this.modID,
+      nombre: this.modificarForm.value.nombre,
+      precio: this.modificarForm.value.precio,
+      cantidad: this.modificarForm.value.cantidad,
+      marca: this.modificarForm.value.marca,
+      proveedor: this.modificarForm.value.proveedor,
+      tipo: this.modificarForm.value.tipo,
+      linea: this.modificarForm.value.linea,
+      aroma_salida: this.modificarForm.value.aroma_salida,
+      aroma_corazon: this.modificarForm.value.aroma_corazon,
+      aroma_fondo: this.modificarForm.value.aroma_fondo
+    };
+
+    this.modificarDB.modificarPerfume(newPerfume).subscribe({
+      next: (respuesta: any) => {
+        console.log(respuesta)
+      },
+      error: (error: any) => {
+        console.error("Error al modificar producto: ", error);
+      }
+    });
   }
 }

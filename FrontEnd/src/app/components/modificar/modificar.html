@@ -1,24 +1,99 @@
-<form [formGroup]="toModificar">
-    <h1>Que desea modificar</h1>
-    <mat-checkbox formControlName="nombre">Nombre</mat-checkbox>
-    <mat-checkbox formControlName="precio">Precio</mat-checkbox>
-    <mat-checkbox formControlName="cantidad">Cantidad</mat-checkbox>
-    <mat-checkbox formControlName="marca">Marca</mat-checkbox>
-    <mat-checkbox formControlName="proveedor">Proveedor</mat-checkbox>
-    <mat-checkbox formControlName="tipo">Tipo</mat-checkbox>
-    <mat-checkbox formControlName="linea">Línea</mat-checkbox>
-    <mat-checkbox formControlName="aroma">Aroma</mat-checkbox>
-    <br>
-    <button class="btn" type="button" (click)="submitToMod()">Enviar</button>
-</form>
+<div class="w-72 container">
+    <!-- Muestra todos los productos para seleccionar 1 a modificar -->
+    @if (allProduct.length > 0) {
+        <table class="table table-striped-columns rounded">
+            <thead>
+                <tr class="text-center">
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Marca</th>
+                    <th>Proveedor</th>
+                    <th>Tipo</th>
+                    <th>Línea</th>
+                    <th colspan="3">Aroma</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (item of allProduct; track $index) {
+                    <tr>
+                        <td>{{ item.id }}</td>
+                        <td>{{ item.nombre }}</td>
+                        <td>{{ item.precio }}</td>
+                        <td>{{ item.cantidad }}</td>
+                        <td>{{ item.marca }}</td>
+                        <td>{{ item.proveedor }}</td>
+                        <td>{{ item.tipo }}</td>
+                        <td>{{ item.linea }}</td>
+                        <td>{{ item.aroma_salida }}</td>
+                        <td>{{ item.aroma_corazon }}</td>
+                        <td>{{ item.aroma_fondo }}</td>
+                        <td><button class="btn btn-danger" (click)="selectModProd(item.id)">Modificar</button></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
 
-<form [formGroup]="modificarForm" class="w-75 container my-3">
-    <div formArrayName="opciones">
-        @for(opcion of opciones.controls; track $index; let i = $index;){
-            <div>
-                <label class="form-label" for="opcion-{{ i }}">{{formArrayNombre[i]}}:</label><br>
-                <input class="form-control" id="opcion-{{ i }}" type="text" formControlName="i"/>
+    @if (showMod) {
+        <div class="card shadow-lg p-4 mx-auto">
+        <form [formGroup]="modificarForm" (ngSubmit)="onModify(modID)">
+            <!-- Nombre -->
+            <div class="mt-3">
+                <label for="mod-1" class="form-label">Nombre</label><br>
+                <input type="text" class="form-control" id="mod-1" formControlName="nombre">
             </div>
-        }
-    </div>
-</form>
+            <!-- Precio -->
+            <div class="mt-3">
+                <label for="mod-2" class="form-label">Precio</label><br>
+                <input type="number" class="form-control" id="mod-2" formControlName="precio">
+            </div>
+            <!-- Cantidad -->
+            <div class="mt-3">
+                <label for="mod-3" class="form-label">Cantidad</label><br>
+                <input type="number" class="form-control" id="mod-3" formControlName="cantidad">
+            </div>
+            <!-- Marca -->
+            <div class="mt-3">
+                <label for="mod-4" class="form-label">Marca</label><br>
+                <input type="text" class="form-control" id="mod-4" formControlName="marca">
+            </div>
+            <!-- Proveedor -->
+            <div class="mt-3">
+                <label for="mod-5" class="form-label">Proveedor</label><br>
+                <input type="text" class="form-control" id="mod-5" formControlName="proveedor">
+            </div>
+            <!-- Tipo -->
+            <div class="mt-3">
+                <label for="mod-6" class="form-label">Tipo</label><br>
+                <input type="text" class="form-control" id="mod-6" formControlName="tipo">
+            </div>
+            <!-- Linea -->
+            <div class="mt-3">
+                <label for="mod-7" class="form-label">Linea</label>
+                <input type="text" class="form-control" id="mod-7" formControlName="linea">
+            </div>
+            <!-- AROMA -->
+            <label class="form-label">Aroma</label><br>
+            <!-- Salida -->
+            <div class="mt-3">
+                <label for="mod-8" class="form-label">Salida</label><br>
+                <input type="text" class="form-control" id="mod-8" formControlName="aroma_salida">
+            </div>
+            <!-- Corazon -->
+            <div class="mt-3">
+                <label for="mod-9" class="form-label">Corazon</label>
+                <input type="text" class="form-control" id="mod-9" formControlName="aroma_corazon">
+            </div>
+            <!-- Fondo -->
+            <div class="mt-3">
+                <label for="mod-10" class="form-label">Fondo</label>
+                <input type="text" class="form-control" id="mod-10" formControlName="aroma_fondo">
+            </div>
+            <button type="submit">Modificar este producto</button>
+        </form>
+        </div>
+    }
+</div>

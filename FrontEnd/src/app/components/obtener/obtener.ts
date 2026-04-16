@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, signal } from '@angular/core';
 import { ObtenerService } from '../../services/obtener-service';
 import { Perfume } from '../../interfaces/perfume';
 import { Filtro } from "../filtro/filtro";
@@ -14,10 +14,12 @@ export class Obtener {
   private cdr = inject(ChangeDetectorRef);
 
   TodProductos: Array<Perfume> = [];
-  verTabla: boolean = false;
-
+  //verTabla: boolean = false;
+  verTabla = signal(false);
   mostrarTabla(): void {
-    this.verTabla = true;
+    //this.verTabla = true;
+    console.log("Estado de tabla: " + this.verTabla());
+    this.verTabla.set(true);
   }
 
   constructor() {

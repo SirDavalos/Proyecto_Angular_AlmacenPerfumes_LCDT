@@ -1,16 +1,20 @@
 <div class="w-75 container py-5">
     <div class="card shadow-lg p-4 rounded-4">
-        <!-- @if (perfumeObtenido){
-            <h2 class="fw-bold">{{ perfumeObtenido.nombre }}</h2>
+        @if (loadedPer){
+            <h2 class="fw-bold">#{{ perfumeObtenido.id }} - {{ perfumeObtenido.nombre }}</h2>
+            <p><strong>Precio: </strong>{{ perfumeObtenido.precio | currency: '$'}}</p>
+            <!-- Botones de modificar y eliminar -->
+            <button class="btn btn-warning mb-3" (click)="selectModProd()">Modificar</button>
+            <button class="btn btn-danger" (click)="elimProd()">Eliminar</button>
         } @else {
             <div class="alert alert-warning mt-3">
                 No hay productos para mostrar
             </div>
-        } -->
+        }
 
         @if (showMod) {
-            <div class="card shadow-lg p-4 mx-auto">
-            <form [formGroup]="modificarForm" (ngSubmit)="onModify(modID)">
+            <div class="card shadow-lg p-4 mx-auto mt-3">
+            <form [formGroup]="modificarForm" (ngSubmit)="onModify()">
                 <!-- Nombre -->
                 <div class="mt-3">
                     <label for="mod-1" class="form-label">Nombre</label><br>
@@ -63,8 +67,8 @@
                     <label for="mod-10" class="form-label">Fondo</label>
                     <input type="text" class="form-control" id="mod-10" formControlName="aroma_fondo">
                 </div>
-                <button type="submit">Modificar este producto</button>
-                <button type="reset">Reestablecer datos antes de modificar producto</button>
+                <button class="btn btn-warning w-100 mb-3" (click)="selectModProd()">Reestablecer datos antes de modificar producto</button>
+                <button class="btn btn-danger w-100" type="submit">Modificar este producto</button>
             </form>
             </div>
         }

@@ -1,24 +1,47 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Perfume } from '../../interfaces/perfume';
+import { ObtenerService } from '../../services/obtener-service';
 import { ModificarService } from '../../services/modificar-service';
 import { EliminarService } from '../../services/eliminar-service';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-pagina-perfume',
-  imports: [],
+  imports: [ReactiveFormsModule, CurrencyPipe],
   templateUrl: './pagina-perfume.html',
   styleUrl: './pagina-perfume.css',
 })
+
 export class PaginaPerfume {
+  private obtenerDB = inject(ObtenerService);
+  cdr = inject(ChangeDetectorRef);
+
   perfumeID: number = 0;
-  perfumeObtenido: Perfume;
+  perfumeObtenido: Perfume = {
+    id: 0,
+    nombre: '',
+    precio: 0,
+    cantidad: 0,
+    marca: '',
+    proveedor: '',
+    tipo: '',
+    linea: '',
+    aroma_salida: '',
+    aroma_corazon: '',
+    aroma_fondo: ''
+  };
+  loadedPer: boolean = false;
+  mensaje: string = '';
 
   // Eliminar
   private eliminarDB = inject(EliminarService);
 
   // Modificar
   private modificarDB = inject(ModificarService);
+  private readonly formBuilder = inject(FormBuilder);
+  modificarForm: FormGroup = new FormGroup({});
   showMod: boolean = false;
 
   constructor(private route: ActivatedRoute) {
@@ -26,12 +49,41 @@ export class PaginaPerfume {
       let idString = params.get('id');
       this.perfumeID = +idString!;
     });
+
+    this.obtenerDB.getDato(this.perfumeID).subscribe({
+      next: (respuesta: Perfume) => {
+        this.perfumeObtenido = respuesta;
+        this.cdr.markForCheck();
+        this.loadedPer = true;
+      },
+      error: (error: any) => {
+        console.error('Error al recuperar datos: ', error);
+      }
+    });
   }
 
   // Servicio que obtiene los datos con la id
 
   // Modificar
-  public onModify(id: number){
+  public selectModProd() {
+    this.modificarForm = this.formBuilder.group({
+      nombre: [this.perfumeObtenido!.nombre, []],
+      precio: [this.perfumeObtenido!.precio, [Validators.min]],
+      cantidad: [this.perfumeObtenido!.cantidad, []],
+      marca: [this.perfumeObtenido!.marca, []],
+      proveedor: [this.perfumeObtenido!.proveedor, [Validators.required]],
+      tipo: [this.perfumeObtenido!.tipo, [Validators.required]],
+      linea: [this.perfumeObtenido!.linea, [Validators.required]],
+      aroma_salida: [this.perfumeObtenido!.aroma_salida, [Validators.required]],
+      aroma_corazon: [this.perfumeObtenido!.aroma_corazon, [Validators.required]],
+      aroma_fondo: [this.perfumeObtenido!.aroma_fondo, [Validators.required]],
+    });
+
+    this.showMod = true;
+    this.mensaje = '';
+  }
+
+  public onModify(){
     let newPerfume: Perfume = {
       id: this.perfumeObtenido.id,
       nombre: this.perfumeObtenido.nombre,
@@ -55,5 +107,22 @@ export class PaginaPerfume {
         console.error("Error al modificar producto: ", error);
       }
     });
+  }
+
+  public resetModify(){
+    this.modificarForm
+  }
+
+  // Eliminar
+  elimProd(){
+    this.eliminarDB.eliminarPerfume(this.perfumeID).subscribe({
+      next: (respuesta: any) =>{
+        console.log(respuesta);
+        this.mensaje=respuesta;
+      },
+      error: (error: any) => {
+        console.error('Error al borrar producto: ', error);
+      }
+    })
   }
 }

@@ -25,6 +25,8 @@ export class Modificar {
   modificarForm: FormGroup = new FormGroup({});
 
   allProduct: Array<Perfume> = [];
+
+  mensaje: string = '';
   
   // Estas son para modificar
   modID: number = 0;
@@ -67,6 +69,7 @@ export class Modificar {
     });
 
     this.showMod = true;
+    this.mensaje = '';
   }
   
   public onModify(id: number){
@@ -87,6 +90,7 @@ export class Modificar {
     this.modificarDB.modificarPerfume(newPerfume).subscribe({
       next: (respuesta: any) => {
         console.log(respuesta)
+        this.mensaje = respuesta;
       },
       error: (error: any) => {
         console.error("Error al modificar producto: ", error);
@@ -94,6 +98,7 @@ export class Modificar {
     });
   }
 
+  // Funciones para resultados
   public showResultEvent(event: SearchResult){
     console.log("Llega output");
 

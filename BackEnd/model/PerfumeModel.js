@@ -31,9 +31,15 @@ async function deletePerfume(id) {
     return result.affectedRows;
 }
 
+async function getPerfumeById(id) {
+    const [rows] = await pool.query('SELECT * FROM perfumes WHERE id = ?', [id]);
+    return rows[0];
+}
+
 module.exports = {
     getAllPerfumes,
     insertPerfume,
     updatePerfume,
-    deletePerfume
+    deletePerfume,
+    getPerfumeById
 }

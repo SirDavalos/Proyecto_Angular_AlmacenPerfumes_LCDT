@@ -5,7 +5,8 @@
         </h2>
 
         @if (TodProductos.length > 0) {
-            <app-filtro [allProduct]="TodProductos"></app-filtro>
+            <!-- Aqui se encuentra el componente de filtro -->
+            <app-filtro [allProduct]="TodProductos" (showSearch)="showResultEvent($event)"></app-filtro>
             
             <div class="table-responsive">
                 <table class="table table-striped table-hover table-bordered align-middle shadow-sm">
@@ -24,25 +25,69 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @for (item of TodProductos; track $index) {
-                            <tr>
-                                <td>{{ item.id }}</td>
-                                <td>{{ item.nombre }}</td>
-                                <td>{{ item.precio }}</td>
-                                <td>{{ item.cantidad }}</td>
-                                <td>{{ item.marca }}</td>
-                                <td>{{ item.proveedor }}</td>
-                                <td>{{ item.tipo }}</td>
-                                <td>{{ item.linea }}</td>
-                                <td>{{ item.aroma_salida }}</td>
-                                <td>{{ item.aroma_corazon }}</td>
-                                <td>{{ item.aroma_fondo }}</td>
-                                <td>
-                                    <a class="btn btn-danger btn-sm" [routerLink]="['/perfumes',item.id]">
-                                        Ver
-                                    </a>
-                                </td>
-                            </tr>
+                        @if (showRes) {
+                            @if (resIsArray) {
+                                @for(item of resultSearchArray; track $index){
+                                    <tr>
+                                        <td>{{ item.id }}</td>
+                                        <td>{{ item.nombre }}</td>
+                                        <td>{{ item.precio | currency: '$' }}</td>
+                                        <td>{{ item.cantidad }}</td>
+                                        <td>{{ item.marca }}</td>
+                                        <td>{{ item.proveedor }}</td>
+                                        <td>{{ item.tipo }}</td>
+                                        <td>{{ item.linea }}</td>
+                                        <td>{{ item.aroma_salida }}</td>
+                                        <td>{{ item.aroma_corazon }}</td>
+                                        <td>{{ item.aroma_fondo }}</td>
+                                        <td>
+                                            <a class="btn btn-danger btn-sm" [routerLink]="['/perfumes',item.id]">
+                                                Ver
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            } @else {
+                                <tr>
+                                    <td>{{ resultSearchSolo!.id }}</td>
+                                    <td>{{ resultSearchSolo!.nombre }}</td>
+                                    <td>{{ resultSearchSolo!.precio | currency: '$' }}</td>
+                                    <td>{{ resultSearchSolo!.cantidad }}</td>
+                                    <td>{{ resultSearchSolo!.marca }}</td>
+                                    <td>{{ resultSearchSolo!.proveedor }}</td>
+                                    <td>{{ resultSearchSolo!.tipo }}</td>
+                                    <td>{{ resultSearchSolo!.linea }}</td>
+                                    <td>{{ resultSearchSolo!.aroma_salida }}</td>
+                                    <td>{{ resultSearchSolo!.aroma_corazon }}</td>
+                                    <td>{{ resultSearchSolo!.aroma_fondo }}</td>
+                                    <td>
+                                        <a class="btn btn-danger btn-sm" [routerLink]="['/perfumes',resultSearchSolo!.id]">
+                                            Ver
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        } @else {
+                            @for (item of TodProductos; track $index) {
+                                <tr>
+                                    <td>{{ item.id }}</td>
+                                    <td>{{ item.nombre }}</td>
+                                    <td>{{ item.precio | currency: '$'}}</td>
+                                    <td>{{ item.cantidad }}</td>
+                                    <td>{{ item.marca }}</td>
+                                    <td>{{ item.proveedor }}</td>
+                                    <td>{{ item.tipo }}</td>
+                                    <td>{{ item.linea }}</td>
+                                    <td>{{ item.aroma_salida }}</td>
+                                    <td>{{ item.aroma_corazon }}</td>
+                                    <td>{{ item.aroma_fondo }}</td>
+                                    <td>
+                                        <a class="btn btn-danger btn-sm" [routerLink]="['/perfumes',item.id]">
+                                            Ver
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
                         }
                     </tbody>
                 </table>

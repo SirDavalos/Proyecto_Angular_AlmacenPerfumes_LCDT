@@ -12,7 +12,7 @@ const getPerfumes = async (req, res) => {
     }
 }
 
-// POST /api/books 
+// POST
 const postPerfumes = async (req, res) => { 
   try { 
     console.log(req.body); 
@@ -69,9 +69,26 @@ const deletePerfume = async (req, res) => {
   } 
 }; 
 
+// GET /api/perfumes/obtenerPerfume/:id 
+const getPerfumeById = async (req, res) => { 
+  try { 
+    const { id } = req.params; 
+    const perfume = await PerfumeModel.getPerfumeById(id); 
+ 
+    if (!perfume) 
+      return res.status(404).json({ mensaje: 'Perfume no encontrado' }); 
+ 
+    res.json(perfume); 
+  } catch (error) { 
+    console.error('Error al obtener perfume:', error); 
+    res.status(500).json({ mensaje: 'Error al obtener perfume' }); 
+  } 
+};
+
 module.exports = {
     getPerfumes,
     postPerfumes,
     updatePerfume,
-    deletePerfume
+    deletePerfume,
+    getPerfumeById
 }

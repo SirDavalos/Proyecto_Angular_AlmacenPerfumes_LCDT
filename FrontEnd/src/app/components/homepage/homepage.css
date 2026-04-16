@@ -1,3 +1,7 @@
 body{
     height: 100%;
 }
+
+.text-red{
+    color: #ba1a1a;
+}

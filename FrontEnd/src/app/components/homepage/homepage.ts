@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-homepage',
@@ -6,4 +7,11 @@ import { Component } from '@angular/core';
   templateUrl: './homepage.html',
   styleUrl: './homepage.css',
 })
-export class Homepage {}
+export class Homepage {
+  private router = inject(Router);
+
+  irPagina(): void {
+    this.router.navigate(['/agregar']);
+    this.router.navigate(['/perfumes'])
+  }
+}

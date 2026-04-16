@@ -7,16 +7,20 @@
 
             <h3>Bienvenido</h3>
             <p>Elija una opción</p>
-            <p>Agregar producto:         Ver catalogo:</p>
-
-            <div class="d-flex justify-content-center gap-3 mt-3">
-                <button type="button" class="btn btn-outline-red" (click)="irPagina()">
-                    Ir a Agregar
-                </button>
-
-                <button type="button" class="btn btn-outline-red" (click)="irPagina()">
-                    Mostrar el catalogo
-                </button>
+            
+            <div class="row gap-row-3 mt-3">
+                <div class="col-sm-6">
+                    <p>Agregar producto:</p>
+                    <button type="button" class="btn btn-outline-red" (click)="irAgregar()">
+                        Ir a Agregar
+                    </button>
+                </div>
+                <div class="col-sm-6">
+                    <p>Ver catalogo:</p>
+                    <button type="button" class="btn btn-outline-red" (click)="irObtener()">
+                        Mostrar el catalogo
+                    </button>
+                </div>
             </div>
         </div>
     </div>

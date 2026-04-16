@@ -10,8 +10,11 @@ import { Router } from '@angular/router';
 export class Homepage {
   private router = inject(Router);
 
-  irPagina(): void {
+  irAgregar(): void {
     this.router.navigate(['/agregar']);
-    this.router.navigate(['/perfumes'])
+  }
+
+  irObtener(): void {
+    this.router.navigate(['/perfumes']);
   }
 }

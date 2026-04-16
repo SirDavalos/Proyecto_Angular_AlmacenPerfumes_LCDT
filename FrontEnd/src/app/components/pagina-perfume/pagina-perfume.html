@@ -2,7 +2,23 @@
     <div class="card shadow-lg p-4 rounded-4">
         @if (loadedPer){
             <h2 class="fw-bold">#{{ perfumeObtenido.id }} - {{ perfumeObtenido.nombre }}</h2>
-            <p><strong>Precio: </strong>{{ perfumeObtenido.precio | currency: '$'}}</p>
+            <div class="row">
+                <div class="col-sm-6">
+                    <p><strong>Precio: </strong>{{ perfumeObtenido.precio | currency: '$'}}</p>
+                    <p><strong>Cantidad: </strong>{{ perfumeObtenido.cantidad}}</p>
+                    <p><strong>Marca: </strong>{{ perfumeObtenido.marca}}</p>
+                    <p><strong>Proveedor: </strong>{{ perfumeObtenido.proveedor}}</p>
+                    <p><strong>Tipo: </strong>{{ perfumeObtenido.tipo}}</p>
+                    <p><strong>Línea: </strong>{{ perfumeObtenido.linea}}</p>
+                </div>
+                <div class="col-sm-6">
+                    <h4>Aroma</h4>
+                    <p><strong>Salida: </strong>{{ perfumeObtenido.aroma_salida}}</p>
+                    <p><strong>Corazón: </strong>{{ perfumeObtenido.aroma_corazon}}</p>
+                    <p><strong>Fondo: </strong>{{ perfumeObtenido.aroma_fondo}}</p>
+                </div>
+            </div>
+
             <!-- Botones de modificar y eliminar -->
             <button class="btn btn-warning mb-3" (click)="selectModProd()">Modificar</button>
             <button class="btn btn-danger" (click)="elimProd()">Eliminar</button>

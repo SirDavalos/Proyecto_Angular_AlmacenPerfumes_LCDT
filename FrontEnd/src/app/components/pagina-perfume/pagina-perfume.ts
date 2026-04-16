@@ -50,6 +50,7 @@ export class PaginaPerfume {
       this.perfumeID = +idString!;
     });
 
+    // Servicio que obtiene los datos con la id
     this.obtenerDB.getDato(this.perfumeID).subscribe({
       next: (respuesta: Perfume) => {
         this.perfumeObtenido = respuesta;
@@ -61,8 +62,6 @@ export class PaginaPerfume {
       }
     });
   }
-
-  // Servicio que obtiene los datos con la id
 
   // Modificar
   public selectModProd() {
@@ -107,10 +106,6 @@ export class PaginaPerfume {
         console.error("Error al modificar producto: ", error);
       }
     });
-  }
-
-  public resetModify(){
-    this.modificarForm
   }
 
   // Eliminar

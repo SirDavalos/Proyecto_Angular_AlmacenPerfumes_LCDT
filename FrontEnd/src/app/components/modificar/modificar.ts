@@ -50,23 +50,111 @@ export class Modificar {
     });
   }
 
+  /*Información de los validators:
+    -required: asegura que el campo no este vacio.
+    -minLength: asegura la longitud minima de caracteres que se deben de poner en un campo.
+    -maxLength: asegura la longitud maxima de caracteres que se deben de poner en un campo.
+    -min: para que el valor numerico del campo sea mayor al indicado.
+    -max: para que el valor nuerico del campo sea menor al indicado.
+      *Nota: los ultimos dos funcinan como un rango para los numeros.
+    -pattern('^[a-zA-Z ]+$'): */
+
   public selectModProd(id: number) {
     let modPerfume = this.allProduct.find((prod) => prod.id == id);
 
     this.modID = id;
     
     this.modificarForm = this.formBuilder.group({
-      nombre: [modPerfume!.nombre, []],
-      precio: [modPerfume!.precio, [Validators.min]],
-      cantidad: [modPerfume!.cantidad, []],
-      marca: [modPerfume!.marca, []],
-      proveedor: [modPerfume!.proveedor, [Validators.required]],
-      tipo: [modPerfume!.tipo, [Validators.required]],
-      linea: [modPerfume!.linea, [Validators.required]],
-      aroma_salida: [modPerfume!.aroma_salida, [Validators.required]],
-      aroma_corazon: [modPerfume!.aroma_corazon, [Validators.required]],
-      aroma_fondo: [modPerfume!.aroma_fondo, [Validators.required]],
-    });
+    nombre: [
+      modPerfume!.nombre,
+      [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(50)
+      ]
+    ],
+
+    precio: [
+      modPerfume!.precio,
+      [
+        Validators.required,
+        Validators.min(1),
+        Validators.max(10000)
+      ]
+    ],
+
+    cantidad: [
+      modPerfume!.cantidad,
+      [
+        Validators.required,
+        Validators.min(1),
+        Validators.max(500)
+      ]
+    ],
+
+    marca: [
+      modPerfume!.marca,
+      [
+        Validators.required,
+        Validators.minLength(2),
+        Validators.pattern('^[a-zA-Z ]+$')
+      ]
+    ],
+
+    proveedor: [
+      modPerfume!.proveedor,
+      [
+        Validators.required,
+        Validators.minLength(4),
+        Validators.maxLength(40)
+      ]
+    ],
+
+    tipo: [
+      modPerfume!.tipo,
+      [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.pattern('^[a-zA-Z ]+$')
+      ]
+    ],
+
+    linea: [
+      modPerfume!.linea,
+      [
+        Validators.required,
+        Validators.minLength(2),
+        Validators.maxLength(30)
+      ]
+    ],
+
+    aroma_salida: [
+      modPerfume!.aroma_salida,
+      [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(25)
+      ]
+    ],
+
+    aroma_corazon: [
+      modPerfume!.aroma_corazon,
+      [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.pattern('^[a-zA-Z ]+$')
+      ]
+    ],
+
+    aroma_fondo: [
+      modPerfume!.aroma_fondo,
+      [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(25)
+      ]
+    ],
+  });
 
     this.showMod = true;
     this.mensaje = '';
@@ -97,8 +185,8 @@ export class Modificar {
       }
     });
   }
-
   // Funciones para resultados
+  
   public showResultEvent(event: SearchResult){
     console.log("Llega output");
 

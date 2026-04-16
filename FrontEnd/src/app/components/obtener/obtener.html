@@ -1,15 +1,12 @@
-<div class="container py-5 text-center">
-
+<div class="w-75 container py-5 text-center">
     <div class="card shadow-lg p-4 rounded-4">
         <h2 class="fw-bold text-red mb-4">
             Lista de Perfumes
         </h2>
 
-        <button class="btn btn-pink mb-4 px-4" (click)="mostrarTabla()">
-            Mostrar productos
-        </button>
-
-        @if (verTabla && TodProductos.length > 0) {
+        @if (TodProductos.length > 0) {
+            <app-filtro [allProduct]="TodProductos"></app-filtro>
+            
             <div class="table-responsive">
                 <table class="table table-striped table-hover table-bordered align-middle shadow-sm">
                     <thead class="text-center">
@@ -23,7 +20,7 @@
                             <th>Tipo</th>
                             <th>Línea</th>
                             <th colspan="3">Aroma</th>
-                            <th>Eliminar</th>
+                            <th>Ver</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -41,18 +38,16 @@
                                 <td>{{ item.aroma_corazon }}</td>
                                 <td>{{ item.aroma_fondo }}</td>
                                 <td>
-                                    <button class="btn btn-danger btn-sm">
-                                        Eliminar
-                                    </button>
+                                    <a class="btn btn-danger btn-sm" [routerLink]="['/perfumes',item.id]">
+                                        Ver
+                                    </a>
                                 </td>
                             </tr>
                         }
                     </tbody>
                 </table>
             </div>
-        }
-
-        @if (verTabla && TodProductos.length === 0) {
+        } @else {
             <div class="alert alert-warning mt-3">
                 No hay productos para mostrar
             </div>
@@ -60,4 +55,3 @@
     </div>
 
 </div>
-<!-- <app-filtro [allProduct]="allProduct"></app-filtro> -->

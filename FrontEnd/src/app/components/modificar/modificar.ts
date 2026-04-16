@@ -1,13 +1,16 @@
 import { ChangeDetectorRef, Component, inject } from '@angular/core';
-import { FormsModule, FormBuilder, FormArray, ReactiveFormsModule, FormGroup, Validators } from '@angular/forms';
+import { FormsModule, FormBuilder, ReactiveFormsModule, FormGroup, Validators } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { CurrencyPipe } from '@angular/common';
 import { Perfume } from '../../interfaces/perfume';
+import { SearchResult } from '../../interfaces/search-result';
 import { ObtenerService } from '../../services/obtener-service';
 import { ModificarService } from '../../services/modificar-service';
+import { Filtro } from '../filtro/filtro';
 
 @Component({
   selector: 'app-modificar',
-  imports: [FormsModule, ReactiveFormsModule, MatCheckboxModule],
+  imports: [FormsModule, ReactiveFormsModule, MatCheckboxModule, CurrencyPipe, Filtro],
   templateUrl: './modificar.html',
   styleUrl: './modificar.css',
 })
@@ -22,8 +25,17 @@ export class Modificar {
   modificarForm: FormGroup = new FormGroup({});
 
   allProduct: Array<Perfume> = [];
+
+  mensaje: string = '';
+  
+  // Estas son para modificar
   modID: number = 0;
   showMod: boolean = false;
+
+  // Estas son para resultado
+  resultSearch: Perfume | Perfume[] | null = null;
+  resIsArray: boolean = false;
+  showRes: boolean = false;
 
   constructor(){
     this.obtenerDB.getDatos().subscribe({
@@ -144,7 +156,8 @@ export class Modificar {
     ],
   });
 
-  this.showMod = true;
+    this.showMod = true;
+    this.mensaje = '';
   }
   
   public onModify(id: number){
@@ -164,11 +177,40 @@ export class Modificar {
 
     this.modificarDB.modificarPerfume(newPerfume).subscribe({
       next: (respuesta: any) => {
-        console.log(respuesta)
+        this.mensaje = respuesta.mensaje;
+        console.log(respuesta);
       },
       error: (error: any) => {
         console.error("Error al modificar producto: ", error);
       }
     });
+  }
+  // Funciones para resultados
+  
+  public showResultEvent(event: SearchResult){
+    console.log("Llega output");
+
+    if(event.show){
+      this.resultSearch = event.result!;
+      this.showRes = true;
+
+      if(Object.prototype.toString.call(this.resultSearch) === '[object Array]') {
+        this.resIsArray = true;
+        console.log("Es Array");
+      } else {
+        this.resIsArray = false;
+      }
+    } else {
+      this.showRes = false;
+    }
+    
+  }
+
+  get resultSearchArray() {
+    return this.resultSearch as Perfume[];
+  }
+
+  get resultSearchSolo () {
+    return this.resultSearch as Perfume;
   }
 }

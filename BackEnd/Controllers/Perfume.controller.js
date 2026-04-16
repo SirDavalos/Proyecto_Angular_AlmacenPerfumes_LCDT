@@ -12,19 +12,19 @@ const getPerfumes = async (req, res) => {
     }
 }
 
-// POST /api/books 
+// POST
 const postPerfumes = async (req, res) => { 
   try { 
     console.log(req.body); 
-    const { id, nombre, precio, cantidad, marca, proveedor, tipo, linea, aroma_salida, aroma_corazon, aroma_fondo } = req.body; 
-    if (!id || !nombre || !precio || !cantidad || !marca || !proveedor || !tipo || !linea || !aroma_salida || !aroma_corazon || !aroma_fondo){
-      console.log(id, nombre, precio, cantidad, marca, proveedor, tipo, linea, aroma_corazon, aroma_fondo, aroma_salida);
+    const { nombre, precio, cantidad, marca, proveedor, tipo, linea, aroma_salida, aroma_corazon, aroma_fondo } = req.body; 
+    if (!nombre || precio==null || !cantidad==null || !marca || !proveedor || !tipo || !linea || !aroma_salida || !aroma_corazon || !aroma_fondo){
+      console.log(nombre, precio, cantidad, marca, proveedor, tipo, linea, aroma_corazon, aroma_fondo, aroma_salida);
       return res.status(400).json({ mensaje: 'Faltan datos obligatorios' });
     }
  
     console.log("1"); 
-    const fila_insertada = await PerfumeModel.insertPerfume(id, nombre, precio, cantidad, marca, proveedor, tipo, linea, aroma_salida, aroma_corazon, aroma_fondo); 
-    res.status(201).json({ mensaje: 'Perfume agregado', fila_insertada }); 
+    const id_insertado = await PerfumeModel.insertPerfume(nombre, precio, cantidad, marca, proveedor, tipo, linea, aroma_salida, aroma_corazon, aroma_fondo); 
+    res.status(201).json({ mensaje: 'Perfume agregado', id_insertado }); 
     console.log("2"); 
   } catch (error) { 
     console.error('Error al agregar perfume:', error); 
@@ -69,9 +69,26 @@ const deletePerfume = async (req, res) => {
   } 
 }; 
 
+// GET /api/perfumes/obtenerPerfume/:id 
+const getPerfumeById = async (req, res) => { 
+  try { 
+    const { id } = req.params; 
+    const perfume = await PerfumeModel.getPerfumeById(id); 
+ 
+    if (!perfume) 
+      return res.status(404).json({ mensaje: 'Perfume no encontrado' }); 
+ 
+    res.json(perfume); 
+  } catch (error) { 
+    console.error('Error al obtener perfume:', error); 
+    res.status(500).json({ mensaje: 'Error al obtener perfume' }); 
+  } 
+};
+
 module.exports = {
     getPerfumes,
     postPerfumes,
     updatePerfume,
-    deletePerfume
+    deletePerfume,
+    getPerfumeById
 }

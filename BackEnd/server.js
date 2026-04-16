@@ -4,9 +4,10 @@ const express = require('express');
 const cors = require('cors');
 
 const perfumesRoutes = require('./routes/perfume.routes.js');
+const proveedoresRoutes = require("./routes/proveedores.routes.js");
 const pool = require('./db/conexion'); // <-- Importamos la conexión
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 app.use(cors());
 app.use(express.json());
 
@@ -17,6 +18,7 @@ app.get('/', (req, res) => {
 
 // Rutas principales
 app.use('/api/perfumes', perfumesRoutes);
+app.use('/api/proovedores', proveedoresRoutes);
 
 // Funcion que hace una consulta de prueba mínima que
 // confirma que todo el circuito conexión → consulta → respuesta está funcionando
@@ -29,6 +31,7 @@ async function testConnection() {
         console.error("Ocurrio un error en la conexion: ", error);
     }
 }
+
 // Iniciar servidor y probar conexión
 app.listen(PORT, async () => {
     console.log(`Servidor escuchando en http://localhost:${PORT}`);

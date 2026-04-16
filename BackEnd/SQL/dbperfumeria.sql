@@ -46,8 +46,8 @@ CREATE TABLE `perfumes` (
 --
 
 INSERT INTO `perfumes` (`id`, `nombre`, `precio`, `cantidad`, `marca`, `proveedor`, `tipo`, `linea`, `aroma_salida`, `aroma_corazon`, `aroma_fondo`) VALUES
-(12345, 'Nautilus', 500, 6, 'Nautilus', 'Proveedor Ejemplo', 'Agua de tocador', 'Hombre', 'Aroma de salida ejemplo', 'Aroma corazon ejemplo', 'Aroma de fondo ejemplo'),
-(67890, 'Perfume 2', 650.5, 3, 'Perfumessss', 'Proveedor Ejemplo 2', 'Agua de tocador', 'Recta', 'Aroma de salida ejemplo 2', 'Aroma corazon ejemplo 2', 'Aroma de fondo ejemplo 2');
+(1, 'Nautilus', 500, 6, 'Nautilus', 'Proveedor Ejemplo', 'Agua de tocador', 'Hombre', 'Aroma de salida ejemplo', 'Aroma corazon ejemplo', 'Aroma de fondo ejemplo'),
+(2, 'Perfume 2', 650.5, 3, 'Perfumessss', 'Proveedor Ejemplo 2', 'Agua de tocador', 'Recta', 'Aroma de salida ejemplo 2', 'Aroma corazon ejemplo 2', 'Aroma de fondo ejemplo 2');
 
 -- --------------------------------------------------------
 
@@ -88,6 +88,12 @@ ALTER TABLE `proveedores`
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `perfumes`
+--
+ALTER TABLE `perfumes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `proveedores`

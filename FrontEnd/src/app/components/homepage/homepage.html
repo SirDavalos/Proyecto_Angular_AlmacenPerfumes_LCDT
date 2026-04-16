@@ -1,11 +1,23 @@
-<div class="container py-5 text-center">
-    <div class="card p-4  rounded-4">
-        <h1 class="fw-bold text-red">
-            PERFUMERÍA IGNACIA
-        </h1>
+<body>
+    <div class="container py-5 text-center">
+        <div class="card p-4  rounded-4 mx-auto" style="max-width: 900px;">
+            <h1 class="fw-bold text-red">
+                PERFUMERÍA IGNACIA
+            </h1>
 
-        <button class="btn btn-succes" (click)="irPagina()">
-            Ir a Agregar
-        </button>
+            <h3>Bienvenido</h3>
+            <p>Elija una opción</p>
+            <p>Agregar producto:         Ver catalogo:</p>
+
+            <div class="d-flex justify-content-center gap-3 mt-3">
+                <button type="button" class="btn btn-outline-red" (click)="irPagina()">
+                    Ir a Agregar
+                </button>
+
+                <button type="button" class="btn btn-outline-red" (click)="irPagina()">
+                    Mostrar el catalogo
+                </button>
+            </div>
+        </div>
     </div>
-</div>
+</body>

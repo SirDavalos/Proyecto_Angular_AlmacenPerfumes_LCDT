@@ -1,7 +1,34 @@
 body{
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+
+    background-image: url("/fondohome.jpg");
+    background-size: cover;
+    background-color: rgb(255, 178, 184, 0.6) !important;
+    background-blend-mode: multiply;
+    background-position: center;
 }
 
 .text-red{
     color: #ba1a1a;
+}
+
+.btn-outline-red {
+    color: #67001d;
+    border: 2px solid #67001d;
+    background-color: transparent;
+    transition: 0.3s;
+}
+
+.btn-outline-red:hover {
+    background-color: #67001d;
+    color: white;
+    transform: scale(1.05);
 }

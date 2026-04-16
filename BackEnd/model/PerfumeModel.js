@@ -10,12 +10,12 @@ async function getAllPerfumes() {
     }
 }
 
-async function insertPerfume(id, nombre, precio, cantidad, marca, proveedor, tipo, linea, aroma_salida, aroma_corazon, aroma_fondo) {
+async function insertPerfume(nombre, precio, cantidad, marca, proveedor, tipo, linea, aroma_salida, aroma_corazon, aroma_fondo) {
     const [result] = await pool.query(
-        'INSERT INTO perfumes (id, nombre, precio, cantidad, marca, proveedor, tipo, linea, aroma_salida, aroma_corazon, aroma_fondo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-        [id, nombre, precio, cantidad, marca, proveedor, tipo, linea, aroma_salida, aroma_corazon, aroma_fondo]
+        'INSERT INTO perfumes (nombre, precio, cantidad, marca, proveedor, tipo, linea, aroma_salida, aroma_corazon, aroma_fondo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+        [nombre, precio, cantidad, marca, proveedor, tipo, linea, aroma_salida, aroma_corazon, aroma_fondo]
     );
-    return result.affectedRows;
+    return result.insertId;
 }
 
 async function updatePerfume(id, nombre, precio, cantidad, marca, proveedor, tipo, linea, aroma_salida, aroma_corazon, aroma_fondo) {
@@ -31,9 +31,15 @@ async function deletePerfume(id) {
     return result.affectedRows;
 }
 
+async function getPerfumeById(id) {
+    const [rows] = await pool.query('SELECT * FROM perfumes WHERE id = ?', [id]);
+    return rows[0];
+}
+
 module.exports = {
     getAllPerfumes,
     insertPerfume,
     updatePerfume,
-    deletePerfume
+    deletePerfume,
+    getPerfumeById
 }

@@ -177,8 +177,8 @@ export class Modificar {
 
     this.modificarDB.modificarPerfume(newPerfume).subscribe({
       next: (respuesta: any) => {
-        console.log(respuesta)
-        this.mensaje = respuesta;
+        this.mensaje = respuesta.mensaje;
+        console.log(respuesta);
       },
       error: (error: any) => {
         console.error("Error al modificar producto: ", error);

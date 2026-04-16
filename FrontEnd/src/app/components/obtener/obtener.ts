@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, signal } from '@angular/core';
 import { ObtenerService } from '../../services/obtener-service';
 import { Perfume } from '../../interfaces/perfume';
 import { SearchResult } from '../../interfaces/search-result';

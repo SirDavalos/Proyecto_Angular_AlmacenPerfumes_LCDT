@@ -3,6 +3,8 @@
         <form class="w-100 d-flex justify-content-between" role="search" [formGroup]="formSearch" (ngSubmit)="onSearch()">
                 <select id="selectSearch" class="form-select me-2" formControlName="selected" (change)="ngOnChange()">
                     @defer () {
+                    <!--Poner aqui una etiqueta con signals-->
+                        <h3>{{filter()}} </h3>
                         @for (opc of selectOpt.controls; track opc.value;){
                             <option [value]="opc.value">{{opc.value | titlecase }}</option>
                         }

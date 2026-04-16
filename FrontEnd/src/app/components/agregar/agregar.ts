@@ -37,6 +37,8 @@ export class Agregar {
 
         this.productoForm.reset();
 
+        this.productoForm.reset();
+
         this.producto = {
           id: 0,
           nombre: '',

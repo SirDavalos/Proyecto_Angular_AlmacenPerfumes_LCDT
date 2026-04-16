@@ -1,6 +1,10 @@
-<div class="w-72 container">
+<div class="w-75 container">
     <!-- Muestra todos los productos para seleccionar 1 a modificar -->
     @if (allProduct.length > 0) {
+        <!-- Aqui se encuentra el componente de filtro -->
+        <app-filtro [allProduct]="allProduct" (showSearch)="showResultEvent($event)"></app-filtro>
+
+        <!-- Tabla con todos los articulos -->
         <table class="table table-striped-columns rounded">
             <thead>
                 <tr class="text-center">
@@ -13,25 +17,61 @@
                     <th>Tipo</th>
                     <th>Línea</th>
                     <th colspan="3">Aroma</th>
-                    <th>Eliminar</th>
+                    <th>Modificar</th>
                 </tr>
             </thead>
             <tbody>
-                @for (item of allProduct; track $index) {
-                    <tr>
-                        <td>{{ item.id }}</td>
-                        <td>{{ item.nombre }}</td>
-                        <td>{{ item.precio }}</td>
-                        <td>{{ item.cantidad }}</td>
-                        <td>{{ item.marca }}</td>
-                        <td>{{ item.proveedor }}</td>
-                        <td>{{ item.tipo }}</td>
-                        <td>{{ item.linea }}</td>
-                        <td>{{ item.aroma_salida }}</td>
-                        <td>{{ item.aroma_corazon }}</td>
-                        <td>{{ item.aroma_fondo }}</td>
-                        <td><button class="btn btn-danger" (click)="selectModProd(item.id)">Modificar</button></td>
-                    </tr>
+                @if (showRes) {
+                    @if (resIsArray) {
+                         @for(item of resultSearchArray; track $index){
+                            <tr>
+                                <td>{{ item.id }}</td>
+                                <td>{{ item.nombre }}</td>
+                                <td>{{ item.precio | currency: '$' }}</td>
+                                <td>{{ item.cantidad }}</td>
+                                <td>{{ item.marca }}</td>
+                                <td>{{ item.proveedor }}</td>
+                                <td>{{ item.tipo }}</td>
+                                <td>{{ item.linea }}</td>
+                                <td>{{ item.aroma_salida }}</td>
+                                <td>{{ item.aroma_corazon }}</td>
+                                <td>{{ item.aroma_fondo }}</td>
+                                <td><button class="btn btn-danger" (click)="selectModProd(item.id)">Modificar</button></td>
+                            </tr>
+                        }
+                    } @else {
+                        <tr>
+                            <td>{{ resultSearchSolo!.id }}</td>
+                            <td>{{ resultSearchSolo!.nombre }}</td>
+                            <td>{{ resultSearchSolo!.precio | currency: '$' }}</td>
+                            <td>{{ resultSearchSolo!.cantidad }}</td>
+                            <td>{{ resultSearchSolo!.marca }}</td>
+                            <td>{{ resultSearchSolo!.proveedor }}</td>
+                            <td>{{ resultSearchSolo!.tipo }}</td>
+                            <td>{{ resultSearchSolo!.linea }}</td>
+                            <td>{{ resultSearchSolo!.aroma_salida }}</td>
+                            <td>{{ resultSearchSolo!.aroma_corazon }}</td>
+                            <td>{{ resultSearchSolo!.aroma_fondo }}</td>
+                            <td><button class="btn btn-danger" (click)="selectModProd(resultSearchSolo!.id)">Modificar</button></td>
+                        </tr>
+                    }
+                } @else {
+                    @for (item of allProduct; track $index) {
+                        <tr>
+                            <td>{{ item.id }}</td>
+                            <td>{{ item.nombre }}</td>
+                            <td>{{ item.precio | currency: '$' }}</td>
+                            <td>{{ item.cantidad }}</td>
+                            <td>{{ item.marca }}</td>
+                            <td>{{ item.proveedor }}</td>
+                            <td>{{ item.tipo }}</td>
+                            <td>{{ item.linea }}</td>
+                            <td>{{ item.aroma_salida }}</td>
+                            <td>{{ item.aroma_corazon }}</td>
+                            <td>{{ item.aroma_fondo }}</td>
+                            <td><button class="btn btn-danger" (click)="selectModProd(item.id)">Modificar</button></td>
+                        </tr>
+                    }
                 }
             </tbody>
         </table>

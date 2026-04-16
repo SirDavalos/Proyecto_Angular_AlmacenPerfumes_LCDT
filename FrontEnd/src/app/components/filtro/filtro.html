@@ -1,0 +1,15 @@
+<div class="w-100 my-3">
+    <nav class="navbar bg-body-tertiary container-fluid">
+        <form class="w-100 d-flex justify-content-between" role="search" [formGroup]="formSearch" (ngSubmit)="onSearch()">
+                <select id="selectSearch" class="form-select me-2" formControlName="selected" (change)="ngOnChange()">
+                    @defer () {
+                        @for (opc of selectOpt.controls; track opc.value;){
+                            <option [value]="opc.value">{{opc.value | titlecase }}</option>
+                        }
+                    }
+                </select>
+            <input id="textSearch" class="form-control me-2" type="search" placeholder="Elemento a Buscar" aria-label="Search" formControlName="buscar"/>
+            <button class="btn btn-outline-success" type="submit">Buscar</button>
+        </form>
+    </nav>
+</div>

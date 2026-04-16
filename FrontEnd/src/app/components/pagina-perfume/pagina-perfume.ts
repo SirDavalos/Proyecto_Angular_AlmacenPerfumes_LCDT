@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, inject } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Perfume } from '../../interfaces/perfume';
 import { ObtenerService } from '../../services/obtener-service';
@@ -17,6 +17,8 @@ import { CurrencyPipe } from '@angular/common';
 export class PaginaPerfume {
   private obtenerDB = inject(ObtenerService);
   cdr = inject(ChangeDetectorRef);
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
 
   perfumeID: number = 0;
   perfumeObtenido: Perfume = {
@@ -44,7 +46,7 @@ export class PaginaPerfume {
   modificarForm: FormGroup = new FormGroup({});
   showMod: boolean = false;
 
-  constructor(private route: ActivatedRoute) {
+  constructor() {
     this.route.paramMap.subscribe((params: ParamMap) => {
       let idString = params.get('id');
       this.perfumeID = +idString!;
@@ -119,5 +121,11 @@ export class PaginaPerfume {
         console.error('Error al borrar producto: ', error);
       }
     })
+  }
+
+  goModificar(){
+    this.router.navigate(['/modificar'], {
+      queryParams: { id: this.perfumeObtenido.id }
+    });
   }
 }

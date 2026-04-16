@@ -7,6 +7,7 @@ import { SearchResult } from '../../interfaces/search-result';
 import { ObtenerService } from '../../services/obtener-service';
 import { ModificarService } from '../../services/modificar-service';
 import { Filtro } from '../filtro/filtro';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-modificar',
@@ -19,6 +20,7 @@ export class Modificar {
   private obtenerDB = inject(ObtenerService);
   private modificarDB = inject(ModificarService);
   private cdr = inject(ChangeDetectorRef);
+  private ruta = inject(ActivatedRoute);
 
   // Form Reactive para preguntar que quiere modificar
   private readonly formBuilder = inject(FormBuilder);
@@ -27,6 +29,7 @@ export class Modificar {
   allProduct: Array<Perfume> = [];
 
   mensaje: string = '';
+  selectedId: number | null = null;
   
   // Estas son para modificar
   modID: number = 0;
@@ -43,11 +46,32 @@ export class Modificar {
         this.allProduct = respuesta;
         this.cdr.markForCheck();
         console.log("AllProduct: ",this.allProduct);
+        this.trySelect();
       },
       error: (error: any) => {
         console.error('Error al recuperar datos: ', error);
       }
     });
+  }
+
+  ngOnInit(): void {
+    this.ruta.queryParamMap.subscribe(params => {
+      const idParam = params.get('id');
+      if(idParam){
+        const idURL = Number(idParam);
+
+        if (!isNaN(idURL)) {
+          this.selectedId = idURL;
+          this.trySelect();
+        }
+      }
+    });
+  }
+
+  trySelect() {
+    if (this.selectedId !== null && this.allProduct.length > 0) {
+      this.selectModProd(this.selectedId);
+    }
   }
 
   /*Información de los validators:

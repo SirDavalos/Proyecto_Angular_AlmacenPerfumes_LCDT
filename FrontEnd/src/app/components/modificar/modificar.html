@@ -5,32 +5,65 @@
             Perfumes a Modificar
         </h2>
     
-    <!-- Muestra todos los productos para seleccionar 1 a modificar -->
-    @if (allProduct.length > 0) {
-        <!-- Aqui se encuentra el componente de filtro -->
-        <app-filtro [allProduct]="allProduct" (showSearch)="showResultEvent($event)"></app-filtro>
+        <!-- Muestra todos los productos para seleccionar 1 a modificar -->
+        @if (allProduct.length > 0) {
+            <!-- Aqui se encuentra el componente de filtro -->
+            <app-filtro [allProduct]="allProduct" (showSearch)="showResultEvent($event)"></app-filtro>
 
-        <!-- Tabla con todos los articulos -->
-        <div class="table-responsive">
-            <table class="table table-striped table-hover table-bordered align-middle shadow-sm">
-                <thead>
-                    <tr class="text-center">
-                        <th>#</th>
-                        <th>Nombre</th>
-                        <th>Precio</th>
-                        <th>Cantidad</th>
-                        <th>Marca</th>
-                        <th>Proveedor</th>
-                        <th>Tipo</th>
-                        <th>Línea</th>
-                        <th colspan="3">Aroma</th>
-                        <th>Modificar</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if (showRes) {
-                        @if (resIsArray) {
-                            @for(item of resultSearchArray; track $index){
+            <!-- Tabla con todos los articulos -->
+            <div class="table-responsive">
+                <table class="table table-striped table-hover table-bordered align-middle shadow-sm">
+                    <thead>
+                        <tr class="text-center">
+                            <th>#</th>
+                            <th>Nombre</th>
+                            <th>Precio</th>
+                            <th>Cantidad</th>
+                            <th>Marca</th>
+                            <th>Proveedor</th>
+                            <th>Tipo</th>
+                            <th>Línea</th>
+                            <th colspan="3">Aroma</th>
+                            <th>Modificar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (showRes) {
+                            @if (resIsArray) {
+                                @for(item of resultSearchArray; track $index){
+                                    <tr>
+                                        <td>{{ item.id }}</td>
+                                        <td>{{ item.nombre }}</td>
+                                        <td>{{ item.precio | currency: '$' }}</td>
+                                        <td>{{ item.cantidad }}</td>
+                                        <td>{{ item.marca }}</td>
+                                        <td>{{ item.proveedor }}</td>
+                                        <td>{{ item.tipo }}</td>
+                                        <td>{{ item.linea }}</td>
+                                        <td>{{ item.aroma_salida }}</td>
+                                        <td>{{ item.aroma_corazon }}</td>
+                                        <td>{{ item.aroma_fondo }}</td>
+                                        <td><button class="btn btn-danger" (click)="selectModProd(item.id)">Modificar</button></td>
+                                    </tr>
+                                }
+                            } @else {
+                                <tr>
+                                    <td>{{ resultSearchSolo!.id }}</td>
+                                    <td>{{ resultSearchSolo!.nombre }}</td>
+                                    <td>{{ resultSearchSolo!.precio | currency: '$' }}</td>
+                                    <td>{{ resultSearchSolo!.cantidad }}</td>
+                                    <td>{{ resultSearchSolo!.marca }}</td>
+                                    <td>{{ resultSearchSolo!.proveedor }}</td>
+                                    <td>{{ resultSearchSolo!.tipo }}</td>
+                                    <td>{{ resultSearchSolo!.linea }}</td>
+                                    <td>{{ resultSearchSolo!.aroma_salida }}</td>
+                                    <td>{{ resultSearchSolo!.aroma_corazon }}</td>
+                                    <td>{{ resultSearchSolo!.aroma_fondo }}</td>
+                                    <td><button class="btn btn-danger" (click)="selectModProd(resultSearchSolo!.id)">Modificar</button></td>
+                                </tr>
+                            }
+                        } @else {
+                            @for (item of allProduct; track $index) {
                                 <tr>
                                     <td>{{ item.id }}</td>
                                     <td>{{ item.nombre }}</td>
@@ -46,114 +79,81 @@
                                     <td><button class="btn btn-danger" (click)="selectModProd(item.id)">Modificar</button></td>
                                 </tr>
                             }
-                        } @else {
-                            <tr>
-                                <td>{{ resultSearchSolo!.id }}</td>
-                                <td>{{ resultSearchSolo!.nombre }}</td>
-                                <td>{{ resultSearchSolo!.precio | currency: '$' }}</td>
-                                <td>{{ resultSearchSolo!.cantidad }}</td>
-                                <td>{{ resultSearchSolo!.marca }}</td>
-                                <td>{{ resultSearchSolo!.proveedor }}</td>
-                                <td>{{ resultSearchSolo!.tipo }}</td>
-                                <td>{{ resultSearchSolo!.linea }}</td>
-                                <td>{{ resultSearchSolo!.aroma_salida }}</td>
-                                <td>{{ resultSearchSolo!.aroma_corazon }}</td>
-                                <td>{{ resultSearchSolo!.aroma_fondo }}</td>
-                                <td><button class="btn btn-danger" (click)="selectModProd(resultSearchSolo!.id)">Modificar</button></td>
-                            </tr>
                         }
-                    } @else {
-                        @for (item of allProduct; track $index) {
-                            <tr>
-                                <td>{{ item.id }}</td>
-                                <td>{{ item.nombre }}</td>
-                                <td>{{ item.precio | currency: '$' }}</td>
-                                <td>{{ item.cantidad }}</td>
-                                <td>{{ item.marca }}</td>
-                                <td>{{ item.proveedor }}</td>
-                                <td>{{ item.tipo }}</td>
-                                <td>{{ item.linea }}</td>
-                                <td>{{ item.aroma_salida }}</td>
-                                <td>{{ item.aroma_corazon }}</td>
-                                <td>{{ item.aroma_fondo }}</td>
-                                <td><button class="btn btn-danger" (click)="selectModProd(item.id)">Modificar</button></td>
-                            </tr>
-                        }
-                    }
-                </tbody>
-            </table>
-        </div>
-    } @else {
-        <div class="alert alert-warning mt-3">
-            No hay productos para mostrar
-        </div>
-    }
+                    </tbody>
+                </table>
+            </div>
+        } @else {
+            <div class="alert alert-warning mt-3">
+                No hay productos para mostrar
+            </div>
+        }
 
-    @if (showMod) {
-        <div class="card shadow-lg p-4 mx-auto">
-        <form [formGroup]="modificarForm" (ngSubmit)="onModify(modID)">
-            <!-- Nombre -->
-            <div class="mt-3">
-                <label for="mod-1" class="form-label">Nombre</label><br>
-                <input type="text" class="form-control" id="mod-1" formControlName="nombre" >
+        @if (showMod) {
+            <div class="card shadow-lg p-4 mx-auto">
+            <form [formGroup]="modificarForm" (ngSubmit)="onModify(modID)">
+                <!-- Nombre -->
+                <div class="mt-3">
+                    <label for="mod-1" class="form-label">Nombre</label><br>
+                    <input type="text" class="form-control" id="mod-1" formControlName="nombre" >
+                </div>
+                <!-- Precio -->
+                <div class="mt-3">
+                    <label for="mod-2" class="form-label">Precio</label><br>
+                    <input type="number" class="form-control" id="mod-2" formControlName="precio">
+                </div>
+                <!-- Cantidad -->
+                <div class="mt-3">
+                    <label for="mod-3" class="form-label">Cantidad</label><br>
+                    <input type="number" class="form-control" id="mod-3" formControlName="cantidad">
+                </div>
+                <!-- Marca -->
+                <div class="mt-3">
+                    <label for="mod-4" class="form-label">Marca</label><br>
+                    <input type="text" class="form-control" id="mod-4" formControlName="marca">
+                </div>
+                <!-- Proveedor -->
+                <div class="mt-3">
+                    <label for="mod-5" class="form-label">Proveedor</label><br>
+                    <input type="text" class="form-control" id="mod-5" formControlName="proveedor">
+                </div>
+                <!-- Tipo -->
+                <div class="mt-3">
+                    <label for="mod-6" class="form-label">Tipo</label><br>
+                    <input type="text" class="form-control" id="mod-6" formControlName="tipo">
+                </div>
+                <!-- Linea -->
+                <div class="mt-3">
+                    <label for="mod-7" class="form-label">Linea</label>
+                    <input type="text" class="form-control" id="mod-7" formControlName="linea">
+                </div>
+                <!-- AROMA -->
+                <label class="form-label">Aroma</label><br>
+                <!-- Salida -->
+                <div class="mt-3">
+                    <label for="mod-8" class="form-label">Salida</label><br>
+                    <input type="text" class="form-control" id="mod-8" formControlName="aroma_salida">
+                </div>
+                <!-- Corazon -->
+                <div class="mt-3">
+                    <label for="mod-9" class="form-label">Corazon</label>
+                    <input type="text" class="form-control" id="mod-9" formControlName="aroma_corazon">
+                </div>
+                <!-- Fondo -->
+                <div class="mt-3">
+                    <label for="mod-10" class="form-label">Fondo</label>
+                    <input type="text" class="form-control" id="mod-10" formControlName="aroma_fondo">
+                </div>
+                <button type="submit">Modificar este producto</button>
+                <button type="reset">Reestablecer datos antes de modificar producto</button>
+            </form>
             </div>
-            <!-- Precio -->
-            <div class="mt-3">
-                <label for="mod-2" class="form-label">Precio</label><br>
-                <input type="number" class="form-control" id="mod-2" formControlName="precio">
-            </div>
-            <!-- Cantidad -->
-            <div class="mt-3">
-                <label for="mod-3" class="form-label">Cantidad</label><br>
-                <input type="number" class="form-control" id="mod-3" formControlName="cantidad">
-            </div>
-            <!-- Marca -->
-            <div class="mt-3">
-                <label for="mod-4" class="form-label">Marca</label><br>
-                <input type="text" class="form-control" id="mod-4" formControlName="marca">
-            </div>
-            <!-- Proveedor -->
-            <div class="mt-3">
-                <label for="mod-5" class="form-label">Proveedor</label><br>
-                <input type="text" class="form-control" id="mod-5" formControlName="proveedor">
-            </div>
-            <!-- Tipo -->
-            <div class="mt-3">
-                <label for="mod-6" class="form-label">Tipo</label><br>
-                <input type="text" class="form-control" id="mod-6" formControlName="tipo">
-            </div>
-            <!-- Linea -->
-            <div class="mt-3">
-                <label for="mod-7" class="form-label">Linea</label>
-                <input type="text" class="form-control" id="mod-7" formControlName="linea">
-            </div>
-            <!-- AROMA -->
-            <label class="form-label">Aroma</label><br>
-            <!-- Salida -->
-            <div class="mt-3">
-                <label for="mod-8" class="form-label">Salida</label><br>
-                <input type="text" class="form-control" id="mod-8" formControlName="aroma_salida">
-            </div>
-            <!-- Corazon -->
-            <div class="mt-3">
-                <label for="mod-9" class="form-label">Corazon</label>
-                <input type="text" class="form-control" id="mod-9" formControlName="aroma_corazon">
-            </div>
-            <!-- Fondo -->
-            <div class="mt-3">
-                <label for="mod-10" class="form-label">Fondo</label>
-                <input type="text" class="form-control" id="mod-10" formControlName="aroma_fondo">
-            </div>
-            <button type="submit">Modificar este producto</button>
-            <button type="reset">Reestablecer datos antes de modificar producto</button>
-        </form>
-        </div>
-    }
+        }
 
-    @if (mensaje !== '') {
-      <div class="alert alert-success mt-3 text-center">
-        {{ mensaje }}
-      </div>
-    }
+        @if (mensaje !== '') {
+        <div class="alert alert-success mt-3 text-center">
+            {{ mensaje }}
+        </div>
+        }
     </div>
 </div>

@@ -7,7 +7,7 @@ const perfumesRoutes = require('./routes/perfume.routes.js');
 const proveedoresRoutes = require("./routes/proveedores.routes.js");
 const pool = require('./db/conexion'); // <-- Importamos la conexión
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 app.use(cors());
 app.use(express.json());
 

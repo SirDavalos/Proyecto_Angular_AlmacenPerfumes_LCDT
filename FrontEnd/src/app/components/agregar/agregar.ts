@@ -14,8 +14,6 @@ export class Agregar {
   @ViewChild('productoForm') productoForm!: NgForm;
   private servicio = inject(AgregarService)
 
-  //Signals
-  datos = signal("Datos A agregar: ")
   producto: Perfume = {
     id: 0,
     nombre: '',

@@ -1,0 +1,15 @@
+.text-purple {
+    color: #780d26;
+}
+
+.btn-pink {
+    background-color: #ffb3b8;
+    color: white;
+    border: none;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.btn-pink:hover {
+    background-color: #5d9d8a;
+}

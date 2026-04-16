@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, inject } from '@angular/core';
+import { ObtenerService } from '../../services/obtener-service';
+import { Perfume } from '../../interfaces/perfume';
 
 @Component({
   selector: 'app-obtener',
@@ -6,4 +8,26 @@ import { Component } from '@angular/core';
   templateUrl: './obtener.html',
   styleUrl: './obtener.css',
 })
-export class Obtener {}
+export class Obtener {
+  private getAll = inject(ObtenerService);
+  private cdr = inject(ChangeDetectorRef);
+
+  TodProductos: Array<Perfume> = [];
+  verTabla: boolean = false;
+
+  mostrarTabla(): void {
+    this.verTabla = true;
+  }
+
+  constructor() {
+    this.getAll.getDatos().subscribe({
+      next: (respuesta: Perfume[]) => {
+        this.TodProductos = respuesta;
+        this.cdr.markForCheck();
+      },
+      error: (error: any) => {
+        console.error('Error al recuperar los datos', error);
+      }
+    });
+  }
+}

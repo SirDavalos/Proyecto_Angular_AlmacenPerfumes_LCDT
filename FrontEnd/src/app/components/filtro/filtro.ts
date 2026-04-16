@@ -1,4 +1,4 @@
-import { Component, input, output, inject } from '@angular/core';
+import { Component, input, output, inject, signal } from '@angular/core';
 import { Perfume } from '../../interfaces/perfume';
 import { FormArray, FormBuilder, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { TitleCasePipe } from '@angular/common';
@@ -17,6 +17,9 @@ export class Filtro {
 
   formBuilder = inject(FormBuilder);
 
+  //Signals
+  filter = signal("Filtro: Todos"); //Valor inicial: Todos los filtros
+
   formSearch = this.formBuilder.group({
     buscar: '',
     selectOpt: this.formBuilder.array(['id','marca','proveedor']),
@@ -28,7 +31,9 @@ export class Filtro {
   }
 
   ngOnChange(){
+    this.filter.set("Filtro: ")
     let searchType = this.formSearch.controls.selected.value;
+    this.filter.update((valor) => valor + searchType);
     let newArray: Perfume[] = this.allProduct()!;
 
     switch(searchType){

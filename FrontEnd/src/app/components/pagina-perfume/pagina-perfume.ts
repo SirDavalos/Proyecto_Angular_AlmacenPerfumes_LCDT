@@ -10,6 +10,7 @@ import { Perfume } from '../../interfaces/perfume';
 })
 export class PaginaPerfume {
   perfumeID: number = 0;
+  // perfumeObtenido: Perfume;
 
   constructor(private route: ActivatedRoute) {
     this.route.paramMap.subscribe((params: ParamMap) => {

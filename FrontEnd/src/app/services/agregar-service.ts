@@ -12,6 +12,7 @@ export class AgregarService {
   private url: string = 'http://localhost:3000/api/perfumes/insertPerfume';
 
   agregarPerfume(perfume: Perfume): Observable<any> {
-    return this.http.post(this.url, perfume);
+    const { id, ...perfumeNuevo} = perfume
+    return this.http.post(this.url, perfumeNuevo);
   }
 }

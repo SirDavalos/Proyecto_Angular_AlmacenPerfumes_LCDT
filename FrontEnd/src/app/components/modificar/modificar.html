@@ -145,7 +145,7 @@
                     <input type="text" class="form-control" id="mod-10" formControlName="aroma_fondo">
                 </div>
                 <button type="submit">Modificar este producto</button>
-                <button type="reset">Reestablecer datos antes de modificar producto</button>
+                <button (click)="selectModProd(modID)">Reestablecer datos antes de modificar producto</button>
             </form>
             </div>
         }

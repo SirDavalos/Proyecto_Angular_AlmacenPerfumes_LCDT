@@ -16,15 +16,15 @@ const getPerfumes = async (req, res) => {
 const postPerfumes = async (req, res) => { 
   try { 
     console.log(req.body); 
-    const { id, nombre, precio, cantidad, marca, proveedor, tipo, linea, aroma_salida, aroma_corazon, aroma_fondo } = req.body; 
-    if (!id || !nombre || !precio || !cantidad || !marca || !proveedor || !tipo || !linea || !aroma_salida || !aroma_corazon || !aroma_fondo){
-      console.log(id, nombre, precio, cantidad, marca, proveedor, tipo, linea, aroma_corazon, aroma_fondo, aroma_salida);
+    const { nombre, precio, cantidad, marca, proveedor, tipo, linea, aroma_salida, aroma_corazon, aroma_fondo } = req.body; 
+    if (!nombre || precio==null || !cantidad==null || !marca || !proveedor || !tipo || !linea || !aroma_salida || !aroma_corazon || !aroma_fondo){
+      console.log(nombre, precio, cantidad, marca, proveedor, tipo, linea, aroma_corazon, aroma_fondo, aroma_salida);
       return res.status(400).json({ mensaje: 'Faltan datos obligatorios' });
     }
  
     console.log("1"); 
-    const fila_insertada = await PerfumeModel.insertPerfume(id, nombre, precio, cantidad, marca, proveedor, tipo, linea, aroma_salida, aroma_corazon, aroma_fondo); 
-    res.status(201).json({ mensaje: 'Perfume agregado', fila_insertada }); 
+    const id_insertado = await PerfumeModel.insertPerfume(nombre, precio, cantidad, marca, proveedor, tipo, linea, aroma_salida, aroma_corazon, aroma_fondo); 
+    res.status(201).json({ mensaje: 'Perfume agregado', id_insertado }); 
     console.log("2"); 
   } catch (error) { 
     console.error('Error al agregar perfume:', error); 

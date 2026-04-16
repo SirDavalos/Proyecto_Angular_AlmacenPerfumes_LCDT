@@ -4,10 +4,11 @@ import { Perfume } from '../../interfaces/perfume';
 import { SearchResult } from '../../interfaces/search-result';
 import { ObtenerService } from '../../services/obtener-service';
 import { EliminarService } from '../../services/eliminar-service';
+import { Filtro } from '../filtro/filtro';
 
 @Component({
   selector: 'app-eliminar',
-  imports: [CurrencyPipe],
+  imports: [CurrencyPipe, Filtro],
   templateUrl: './eliminar.html',
   styleUrl: './eliminar.css',
 })

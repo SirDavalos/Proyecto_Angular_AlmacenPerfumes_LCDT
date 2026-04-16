@@ -1,5 +1,5 @@
-import { Component, inject, signal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, inject, ViewChild } from '@angular/core';
+import { FormsModule, NgForm } from '@angular/forms';
 import { AgregarService } from '../../services/agregar-service';
 import { Perfume } from '../../interfaces/perfume';
 
@@ -9,7 +9,9 @@ import { Perfume } from '../../interfaces/perfume';
   templateUrl: './agregar.html',
   styleUrl: './agregar.css',
 })
+
 export class Agregar {
+  @ViewChild('productoForm') productoForm!: NgForm;
   private servicio = inject(AgregarService)
 
   //Signals
@@ -35,7 +37,10 @@ export class Agregar {
       next: (respuesta) => {
         this.mensaje = respuesta.mensaje;
 
-        this.datos.update((dato) => dato + this.producto);
+        this.productoForm.reset();
+
+        this.productoForm.reset();
+
         this.producto = {
           id: 0,
           nombre: '',
@@ -49,11 +54,17 @@ export class Agregar {
           aroma_corazon: '',
           aroma_fondo: ''
         };
-        console.log(this.datos())
+
+        setTimeout(() => {
+          this.mensaje = '';
+        }, 3000);
       },
       error: (error) => {
         this.mensaje = 'Error al agregar producto';
         console.error(error);
+        setTimeout(() => {
+          this.mensaje = '';
+        }, 3000);
       }
     });
   }

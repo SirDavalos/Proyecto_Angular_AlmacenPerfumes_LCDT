@@ -1,4 +1,5 @@
 // db/conexion.js
+const { error } = require('kafka');
 const mysql = require('mysql2'); //1
 
 const pool = mysql.createPool({ //2
@@ -12,4 +13,13 @@ const pool = mysql.createPool({ //2
     queueLimit: 0, //5
     ssl: {rejectUnauthorized: false}
 });
+
+pool.getConnection((err, connection) => {
+    if (err) {
+        console.error("Ocurrio un error: ", err);
+    } else {
+        connection.release();
+    }
+});
+
 module.exports = pool;

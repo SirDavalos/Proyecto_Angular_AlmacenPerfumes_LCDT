@@ -1,5 +1,4 @@
 // db/conexion.js
-const { error } = require('kafka');
 const mysql = require('mysql2/promise'); //1
 
 const pool = mysql.createPool({ //2

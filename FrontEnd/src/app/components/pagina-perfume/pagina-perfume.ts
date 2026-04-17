@@ -44,7 +44,6 @@ export class PaginaPerfume {
   private modificarDB = inject(ModificarService);
   private readonly formBuilder = inject(FormBuilder);
   modificarForm: FormGroup = new FormGroup({});
-  showMod: boolean = false;
 
   constructor() {
     this.route.paramMap.subscribe((params: ParamMap) => {
@@ -80,7 +79,6 @@ export class PaginaPerfume {
       aroma_fondo: [this.perfumeObtenido!.aroma_fondo, [Validators.required]],
     });
 
-    this.showMod = true;
     this.mensaje = '';
   }
 

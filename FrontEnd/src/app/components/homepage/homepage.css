@@ -9,7 +9,7 @@ body{
 
     position: relative;
 
-    background-image: url("/fondohome.jpg");
+    background-image: url("fondohome.jpg");
     background-size: cover;
     background-color: rgb(255, 178, 184, 0.6) !important;
     background-blend-mode: multiply;

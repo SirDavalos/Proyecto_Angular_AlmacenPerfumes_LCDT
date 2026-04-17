@@ -55,7 +55,7 @@ export class Agregar {
 
         setTimeout(() => {
           this.mensaje = '';
-        }, 3000);
+        }, 5000);
       },
       error: (error) => {
         this.mensaje = 'Error al agregar producto';

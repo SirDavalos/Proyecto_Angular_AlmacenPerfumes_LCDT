@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 
 export class EliminarService {
   private http = inject(HttpClient);
-  private url: string = 'http://localhost:3000/api/perfumes/borrarPerfume';
+  private url: string = 'https://proyecto-angular-almacenperfumes-lcdt.onrender.com/api/perfumes/borrarPerfume';
 
   eliminarPerfume(id: number): Observable<any> {
     return this.http.delete(`${this.url}/${id}`);

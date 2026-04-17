@@ -28,27 +28,33 @@ export class Eliminar {
   showRes: boolean = false;
 
   constructor(){
+    this.loadObtener()
+  }
+
+  public elimProd(id:number){
+    this.eliminarDB.eliminarPerfume(id).subscribe({
+      next: (respuesta: any) =>{
+        this.mensaje=respuesta.mensaje;
+        this.cdr.markForCheck();
+        this.loadObtener()
+      },
+      error: (error: any) => {
+        console.error('Error al borrar producto: ', error);
+      }
+    });
+  }
+
+  public loadObtener(): void {
     this.obtenerDB.getDatos().subscribe({
       next: (respuesta: Perfume[]) => {
         this.allProduct = respuesta;
         this.cdr.markForCheck();
+        console.log("AllProduct: ",this.allProduct);
       },
       error: (error: any) => {
         console.error('Error al recuperar datos: ', error);
       }
     });
-  }
-
-  elimProd(id:number){
-    this.eliminarDB.eliminarPerfume(id).subscribe({
-      next: (respuesta: any) =>{
-        console.log(respuesta);
-        this.mensaje=respuesta;
-      },
-      error: (error: any) => {
-        console.error('Error al borrar producto: ', error);
-      }
-    })
   }
 
   // Funciones para resultados

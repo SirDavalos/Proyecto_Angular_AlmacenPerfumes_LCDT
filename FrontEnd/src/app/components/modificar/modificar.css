@@ -1,0 +1,16 @@
+
+.text-red{
+    color: #ba1a1a;
+}
+
+.btn-outline-red {
+    color: #67001d;
+    border: 2px solid #67001d;
+    background-color: transparent;
+    transition: 0.3s;
+}
+
+.btn-outline-red:hover {
+    background-color: #67001d;
+    color: white;
+}

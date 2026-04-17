@@ -144,8 +144,9 @@
                     <label for="mod-10" class="form-label">Fondo</label>
                     <input type="text" class="form-control" id="mod-10" formControlName="aroma_fondo">
                 </div>
-                <button type="submit">Modificar este producto</button>
-                <button (click)="selectModProd(modID)">Reestablecer datos antes de modificar producto</button>
+
+                <button class="btn btn-outline-red w-100 my-3" (click)="selectModProd(modID)">Reestablecer datos antes de modificar producto</button>
+                <button class="btn btn-outline-red w-100" type="submit">Modificar este producto</button>
             </form>
             </div>
         }

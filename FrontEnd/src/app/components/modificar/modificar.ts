@@ -38,16 +38,7 @@ export class Modificar {
   showRes: boolean = false;
 
   constructor(){
-    this.obtenerDB.getDatos().subscribe({
-      next: (respuesta: Perfume[]) => {
-        this.allProduct = respuesta;
-        this.cdr.markForCheck();
-        console.log("AllProduct: ",this.allProduct);
-      },
-      error: (error: any) => {
-        console.error('Error al recuperar datos: ', error);
-      }
-    });
+    this.loadObtener()
   }
 
   /*Información de los validators:
@@ -178,6 +169,8 @@ export class Modificar {
     this.modificarDB.modificarPerfume(newPerfume).subscribe({
       next: (respuesta: any) => {
         this.mensaje = respuesta.mensaje;
+        this.cdr.markForCheck();
+        this.loadObtener();
         console.log(respuesta);
       },
       error: (error: any) => {
@@ -185,6 +178,20 @@ export class Modificar {
       }
     });
   }
+
+  public loadObtener(): void {
+    this.obtenerDB.getDatos().subscribe({
+      next: (respuesta: Perfume[]) => {
+        this.allProduct = respuesta;
+        this.cdr.markForCheck();
+        console.log("AllProduct: ",this.allProduct);
+      },
+      error: (error: any) => {
+        console.error('Error al recuperar datos: ', error);
+      }
+    });
+  }
+
   // Funciones para resultados
   
   public showResultEvent(event: SearchResult){

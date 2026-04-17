@@ -1,5 +1,5 @@
 // db/conexion.js
-const mysql = require('mysql2/promise'); //1
+const mysql = require('mysql2'); //1
 
 const pool = mysql.createPool({ //2
     host: process.env.DB_HOST,

@@ -11,10 +11,10 @@ export class Homepage {
   private router = inject(Router);
 
   irAgregar(): void {
-    this.router.navigate(['/agregar']);
+    this.router.navigate(['/Proyecto_Angular_AlmacenPerfumes_LCDT/agregar']);
   }
 
   irObtener(): void {
-    this.router.navigate(['/perfumes']);
+    this.router.navigate(['/Proyecto_Angular_AlmacenPerfumes_LCDT/perfumes']);
   }
 }

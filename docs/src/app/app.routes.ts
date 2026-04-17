@@ -11,35 +11,35 @@ import { NotFound } from './components/not-found/not-found';
 
 export const routes: Routes = [
     {
-        path: '',
+        path: '/Proyecto_Angular_AlmacenPerfumes_LCDT',
         component: Homepage,
         title: 'Inicio'
     },
     {
-        path: 'agregar',
+        path: '/Proyecto_Angular_AlmacenPerfumes_LCDT/agregar',
         component: Agregar,
         title: 'Agregar nuevo Perfume'
     },
     {
-        path: 'perfumes',
+        path: '/Proyecto_Angular_AlmacenPerfumes_LCDT/perfumes',
         component: Obtener,
         title: 'Viendo todo el Catálogo'
     },
     {
-        path: 'perfumes/:id',
+        path: '/Proyecto_Angular_AlmacenPerfumes_LCDT/perfumes/:id',
         component: PaginaPerfume,
         title: 'Viendo perfume particular'
     },
     {
-        path: 'modificar',
+        path: '/Proyecto_Angular_AlmacenPerfumes_LCDT/modificar',
         component: Modificar
     },
     {
-        path: 'eliminar',
+        path: '/Proyecto_Angular_AlmacenPerfumes_LCDT/eliminar',
         component: Eliminar
     },
     {
-        path: '**',
+        path: '/Proyecto_Angular_AlmacenPerfumes_LCDT/**',
         component: NotFound
     },
 ];

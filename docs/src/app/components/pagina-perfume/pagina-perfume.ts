@@ -122,7 +122,7 @@ export class PaginaPerfume {
   }
 
   goModificar(){
-    this.router.navigate(['/modificar'], {
+    this.router.navigate(['/Proyecto_Angular_AlmacenPerfumes_LCDT/modificar'], {
       queryParams: { id: this.perfumeObtenido.id }
     });
   }

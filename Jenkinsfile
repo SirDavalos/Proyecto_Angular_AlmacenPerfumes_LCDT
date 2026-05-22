@@ -16,17 +16,14 @@ pipeline {
         stage('install') {
             steps {
                 git branch: 'pages', url: 'https://github.com/SirDavalos/Proyecto_Angular_AlmacenPerfumes_LCDT.git'
-                dir{'ruta a mover'} {
-                    sh 'npm install'
-                }
+                sh 'npm install'
+                
             }
         }
 
         stage('testing') {
             steps {
-                dir('ruta a mover') {
-                    sh 'npm run test'
-                }
+                sh 'npm run test'
             }
         }
     }

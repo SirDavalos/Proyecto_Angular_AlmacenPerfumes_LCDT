@@ -15,7 +15,7 @@ pipeline {
     stages {
         stage('install') {
             steps {
-                git branch: 'pages', url: 'https://github.com/SirDavalos/Proyecto_Angular_AlmacenPerfumes_LCDT.git'
+                git branch: 'testVitest', url: 'https://github.com/SirDavalos/Proyecto_Angular_AlmacenPerfumes_LCDT.git'
                 sh 'npm install'
                 
             }

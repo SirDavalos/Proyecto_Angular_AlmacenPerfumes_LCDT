@@ -1,12 +1,14 @@
 import { Routes } from '@angular/router';
 import { Homepage } from './components/homepage/homepage';
-import { Agregar } from './components/agregar/agregar';
-import { Obtener } from './components/obtener/obtener';
+import { Agregar } from './components/Perfume/agregar/agregar';
+import { Obtener } from './components/Perfume/obtener/obtener';
 import { PaginaPerfume } from './components/pagina-perfume/pagina-perfume';
-import { Modificar } from './components/modificar/modificar';
-import { Eliminar } from './components/eliminar/eliminar';
+import { Modificar } from './components/Perfume/modificar/modificar';
+import { Eliminar } from './components/Perfume/eliminar/eliminar';
 import { NotFound } from './components/not-found/not-found';
 import { ObtenerProveedor } from './components/Proveedor/obtener/obtener';
+import { PaginaProveedor } from './components/Proveedor/pagina-proveedor/pagina-proveedor';
+import { AgregarProveedor } from './components/Proveedor/agregar/agregar';
 
 // const titleResolver: ResolveFn<string> = (route) => route.queryParams['id'];
 
@@ -40,9 +42,19 @@ export const routes: Routes = [
         component: Eliminar
     },
     {
+        path: 'agregarproveedor',
+        component: AgregarProveedor,
+        title: 'Agregar un nuevo proveedor'
+    },
+    {
         path: 'proveedores',
         component: ObtenerProveedor,
         title:'Viendo todos los proveedores'
+    },
+    {
+        path: 'provedores/:id',
+        component: PaginaProveedor,
+        title: 'Viendo proveedor particular'
     },
     {
         path: '**',

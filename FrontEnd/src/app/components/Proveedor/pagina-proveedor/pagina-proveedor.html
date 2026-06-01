@@ -1,0 +1,21 @@
+<div class="w-75 container py-5">
+    <div class="card shadow-lg p-4 rounded-4">
+        @if (loadedPer){
+            <h2 class="fw-bold">#{{ proveedorObtenido.id }} - {{ proveedorObtenido.nombre }}</h2>
+            <div class="row">
+                <div class="col-sm-6">
+                    <p><strong>Correo: </strong>{{ proveedorObtenido.correo}}</p>
+                    <p><strong>Telefono: </strong>{{ proveedorObtenido.tel}}</p>
+                </div>
+            </div>
+
+            <!-- Botones de modificar y eliminar -->
+            <button class="btn btn-warning mb-3" (click)="goModificar()">Modificar</button>
+            <button class="btn btn-danger" (click)="elimProd()">Eliminar</button>
+        } @else {
+            <div class="alert alert-warning mt-3">
+                No hay proveedores para mostrar
+            </div>
+        }
+    </div>
+</div>

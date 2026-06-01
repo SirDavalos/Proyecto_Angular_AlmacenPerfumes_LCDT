@@ -2,9 +2,9 @@ import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Perfume } from '../../interfaces/perfume';
-import { ObtenerService } from '../../services/obtener-service';
-import { ModificarService } from '../../services/modificar-service';
-import { EliminarService } from '../../services/eliminar-service';
+import { ObtenerService } from '../../services/Perfume/obtener-service';
+import { ModificarService } from '../../services/Perfume/modificar-service';
+import { EliminarService } from '../../services/Perfume/eliminar-service';
 import { CurrencyPipe } from '@angular/common';
 
 @Component({

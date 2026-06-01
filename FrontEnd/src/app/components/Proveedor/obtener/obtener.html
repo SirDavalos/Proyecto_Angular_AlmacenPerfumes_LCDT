@@ -1,1 +1,76 @@
-<p>obtener works!</p>
+<div class="w-75 container py-5 text-center">
+    <div class="card shadow-lg p-4 rounded-4">
+        <h2 class="fw-bold text-red mb-4">
+            Lista de Perfumes
+        </h2>
+
+        @if (TodProductos.length > 0) {
+            <!-- Aqui se encuentra el componente de filtro -->
+            <app-filtro [allProduct]="TodProductos" (showSearch)="showResultEvent($event)"></app-filtro>
+            
+            <div class="table-responsive">
+                <table class="table table-striped table-hover table-bordered align-middle shadow-sm">
+                    <thead class="text-center">
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Correo</th>
+                            <th>Telefono</th>
+                            <th>Ver</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (showRes) {
+                            @if (resIsArray) {
+                                @for(item of resultSearchArray; track $index){
+                                    <tr>
+                                        <td>{{ item.id }}</td>
+                                        <td>{{ item.nombre }}</td>
+                                        <td>{{ item.correo }}</td>
+                                        <td>{{ item.tel }}</td>
+                                        <td>
+                                            <a class="btn btn-danger btn-sm" [routerLink]="['/proveedores',item.id]">
+                                                Ver
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            } @else {
+                                <tr>
+                                    <td>{{ resultSearchSolo!.id }}</td>
+                                    <td>{{ resultSearchSolo!.nombre }}</td>
+                                    <td>{{ resultSearchSolo!.correo }}</td>
+                                    <td>{{ resultSearchSolo!.tel }}</td>
+                                    <td>
+                                        <a class="btn btn-danger btn-sm" [routerLink]="['/proveedores',resultSearchSolo!.id]">
+                                            Ver
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        } @else {
+                            @for (item of TodProductos; track $index) {
+                                <tr>
+                                    <td>{{ item.id }}</td>
+                                    <td>{{ item.nombre }}</td>
+                                    <td>{{ item.correo }}</td>
+                                    <td>{{ item.tel }}</td>
+                                    <td>
+                                        <a class="btn btn-danger btn-sm" [routerLink]="['/proveedores',item.id]">
+                                            Ver
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        } @else {
+            <div class="alert alert-warning mt-3">
+                No hay productos para mostrar
+            </div>
+        }
+    </div>
+
+</div>

@@ -1,17 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { AgregarProveedor } from './agregar';
 
-import { Agregar } from './agregar';
-
-describe('Agregar', () => {
-  let component: Agregar;
-  let fixture: ComponentFixture<Agregar>;
+describe('AgregarProveedor', () => {
+  let component: AgregarProveedor;
+  let fixture: ComponentFixture<AgregarProveedor>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Agregar],
+      imports: [AgregarProveedor],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(Agregar);
+    fixture = TestBed.createComponent(AgregarProveedor);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

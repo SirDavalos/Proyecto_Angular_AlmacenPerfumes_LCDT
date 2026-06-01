@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
 
 // Rutas principales
 app.use('/api/perfumes', perfumesRoutes);
-app.use('/api/proovedores', proveedoresRoutes);
+app.use('/api/proveedores', proveedoresRoutes);
 
 // Funcion que hace una consulta de prueba mínima que
 // confirma que todo el circuito conexión → consulta → respuesta está funcionando

@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ObtenerService } from './obtener-service';
+import { ObtenerServiceProveedor } from './obtener-service';
 
 describe('ObtenerService', () => {
-  let service: ObtenerService;
+  let service: ObtenerServiceProveedor;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ObtenerService);
+    service = TestBed.inject(ObtenerServiceProveedor);
   });
 
   it('should be created', () => {

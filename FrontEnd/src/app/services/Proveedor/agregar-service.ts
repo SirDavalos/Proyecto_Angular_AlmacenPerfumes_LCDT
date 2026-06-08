@@ -12,7 +12,7 @@ export class AgregarServiceProveedor {
   private http = inject(HttpClient);
   private url: string = `${this.BASEURL}/api/proveedores/insertProveedor`;
 
-  agregarPerfume(proveedor: Proveedor): Observable<any> {
+  agregarProveedor(proveedor: Proveedor): Observable<any> {
     const { id, ...proveedorNuevo} = proveedor
     return this.http.post(this.url, proveedorNuevo);
   }

@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Obtener } from './obtener';
+import { ObtenerProveedor } from './obtener';
 
-describe('Obtener', () => {
-  let component: Obtener;
-  let fixture: ComponentFixture<Obtener>;
+describe('ObtenerProveedor', () => {
+  let component: ObtenerProveedor;
+  let fixture: ComponentFixture<ObtenerProveedor>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Obtener],
+      imports: [ObtenerProveedor],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(Obtener);
+    fixture = TestBed.createComponent(ObtenerProveedor);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

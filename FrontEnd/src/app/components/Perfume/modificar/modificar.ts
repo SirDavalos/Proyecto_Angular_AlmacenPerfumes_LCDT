@@ -2,10 +2,10 @@ import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { FormsModule, FormBuilder, ReactiveFormsModule, FormGroup, Validators } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CurrencyPipe } from '@angular/common';
-import { Perfume } from '../../interfaces/perfume';
-import { SearchResult } from '../../interfaces/search-result';
-import { ObtenerService } from '../../services/obtener-service';
-import { ModificarService } from '../../services/modificar-service';
+import { Perfume } from '../../../interfaces/perfume';
+import { SearchResult } from '../../../interfaces/search-result';
+import { ObtenerService } from '../../../services/Perfume/obtener-service';
+import { ModificarService } from '../../../services/Perfume/modificar-service';
 import { Filtro } from '../filtro/filtro';
 import { ActivatedRoute } from '@angular/router';
 

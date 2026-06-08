@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, inject, signal } from '@angular/core';
-import { ObtenerService } from '../../services/obtener-service';
-import { Perfume } from '../../interfaces/perfume';
-import { SearchResult } from '../../interfaces/search-result';
+import { ObtenerService } from '../../../services/Perfume/obtener-service';
+import { Perfume } from '../../../interfaces/perfume';
+import { SearchResult } from '../../../interfaces/search-result';
 import { Filtro } from "../filtro/filtro";
 import { RouterLink } from "@angular/router";
 import { CurrencyPipe } from '@angular/common';

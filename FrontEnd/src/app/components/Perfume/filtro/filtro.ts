@@ -1,8 +1,8 @@
 import { Component, input, output, inject, signal } from '@angular/core';
-import { Perfume } from '../../interfaces/perfume';
+import { Perfume } from '../../../interfaces/perfume';
 import { FormArray, FormBuilder, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { TitleCasePipe } from '@angular/common';
-import { SearchResult } from '../../interfaces/search-result';
+import { SearchResult } from '../../../interfaces/search-result';
 
 @Component({
   selector: 'app-filtro',

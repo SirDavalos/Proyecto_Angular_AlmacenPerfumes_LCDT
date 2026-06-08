@@ -1,7 +1,7 @@
 import { Component, inject, ViewChild } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-import { AgregarService } from '../../services/agregar-service';
-import { Perfume } from '../../interfaces/perfume';
+import { AgregarService } from '../../../services/Perfume/agregar-service';
+import { Perfume } from '../../../interfaces/perfume';
 
 @Component({
   selector: 'app-agregar',

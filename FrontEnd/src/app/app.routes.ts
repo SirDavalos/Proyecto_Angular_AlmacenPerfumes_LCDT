@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { Homepage } from './components/homepage/homepage';
 import { Agregar } from './components/Perfume/agregar/agregar';
 import { Obtener } from './components/Perfume/obtener/obtener';
-import { PaginaPerfume } from './components/pagina-perfume/pagina-perfume';
+import { PaginaPerfume } from './components/Perfume/pagina-perfume/pagina-perfume';
 import { Modificar } from './components/Perfume/modificar/modificar';
 import { Eliminar } from './components/Perfume/eliminar/eliminar';
 import { NotFound } from './components/not-found/not-found';
@@ -19,7 +19,7 @@ export const routes: Routes = [
         title: 'Inicio'
     },
     {
-        path: 'agregar',
+        path: 'perfumes/agregar',
         component: Agregar,
         title: 'Agregar nuevo Perfume'
     },
@@ -34,15 +34,15 @@ export const routes: Routes = [
         title: 'Viendo perfume particular'
     },
     {
-        path: 'modificar',
+        path: 'perfumes/modificar',
         component: Modificar
     },
     {
-        path: 'eliminar',
+        path: 'perfumes/eliminar',
         component: Eliminar
     },
     {
-        path: 'agregarproveedor',
+        path: 'proveedores/agregar',
         component: AgregarProveedor,
         title: 'Agregar un nuevo proveedor'
     },

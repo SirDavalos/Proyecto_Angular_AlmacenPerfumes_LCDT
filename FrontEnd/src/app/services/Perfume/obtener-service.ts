@@ -8,9 +8,10 @@ import { HttpClient } from '@angular/common/http';
 })
 
 export class ObtenerService {
+  private BASEURL: string = 'http://localhost:3000'
   private http = inject(HttpClient);
-  private url: string = 'https://proyecto-angular-almacenperfumes-lcdt.onrender.com/api/perfumes/getPerfumes';
-  private urlUno: string = 'https://proyecto-angular-almacenperfumes-lcdt.onrender.com/api/perfumes/obtenerPerfume';
+  private url: string = `${this.BASEURL}/api/perfumes/getPerfumes`;
+  private urlUno: string = `${this.BASEURL}/api/perfumes/obtenerPerfume`;
 
   getDatos(): Observable<Perfume[]> {
     return this.http.get<Perfume[]>(this.url).pipe(

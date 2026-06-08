@@ -8,8 +8,9 @@ import { HttpClient } from '@angular/common/http';
 })
 
 export class AgregarServiceProveedor {
+  private BASEURL: string = 'http://localhost:3000'
   private http = inject(HttpClient);
-  private url: string = 'https://proyecto-angular-almacenperfumes-lcdt.onrender.com/api/proveedores/insertProveedor';
+  private url: string = `${this.BASEURL}/api/proveedores/insertProveedor`;
 
   agregarPerfume(proveedor: Proveedor): Observable<any> {
     const { id, ...proveedorNuevo} = proveedor

@@ -8,8 +8,9 @@ import { HttpClient } from '@angular/common/http';
 })
 
 export class EliminarService {
+  private BASEURL: string = 'http://localhost:3000'
   private http = inject(HttpClient);
-  private url: string = 'https://proyecto-angular-almacenperfumes-lcdt.onrender.com/api/perfumes/borrarPerfume';
+  private url: string =`${this.BASEURL}/api/perfumes/borrarPerfume`;
 
   eliminarPerfume(id: number): Observable<any> {
     return this.http.delete(`${this.url}/${id}`);

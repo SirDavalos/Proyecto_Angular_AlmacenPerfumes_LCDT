@@ -29,7 +29,7 @@ export const routes: Routes = [
         title: 'Viendo todo el Catálogo'
     },
     {
-        path: 'perfumes/:id',
+        path: 'perfumes/solo/:id',
         component: PaginaPerfume,
         title: 'Viendo perfume particular'
     },

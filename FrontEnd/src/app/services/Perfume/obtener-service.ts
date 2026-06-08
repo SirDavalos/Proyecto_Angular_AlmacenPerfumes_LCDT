@@ -31,7 +31,7 @@ export class ObtenerService {
     );
   }
 
-  getDato(id: number): Observable<Perfume> {
+  getSoloDato(id: number): Observable<Perfume> {
     return this.http.get<Perfume>(`${this.urlUno}/${id}`).pipe(
       map(item => ({
         id: item.id ?? 0,

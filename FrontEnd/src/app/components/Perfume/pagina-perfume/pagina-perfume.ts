@@ -52,7 +52,7 @@ export class PaginaPerfume {
     });
 
     // Servicio que obtiene los datos con la id
-    this.obtenerDB.getDato(this.perfumeID).subscribe({
+    this.obtenerDB.getSoloDato(this.perfumeID).subscribe({
       next: (respuesta: Perfume) => {
         this.perfumeObtenido = respuesta;
         this.cdr.markForCheck();

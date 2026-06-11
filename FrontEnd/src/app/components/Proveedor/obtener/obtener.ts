@@ -1,5 +1,4 @@
 import { ChangeDetectorRef, Component, inject } from '@angular/core';
-import { Filtro } from '../../Perfume/filtro/filtro';
 import { RouterLink } from '@angular/router';
 import { CurrencyPipe } from '@angular/common';
 import { ObtenerServiceProveedor } from '../../../services/Proveedor/obtener-service';
@@ -8,7 +7,7 @@ import { SearchResult } from '../../../interfaces/search-result';
 
 @Component({
   selector: 'app-obtener',
-  imports: [Filtro, RouterLink, CurrencyPipe],
+  imports: [RouterLink, CurrencyPipe],
   templateUrl: './obtener.html',
   styleUrl: './obtener.css',
 })

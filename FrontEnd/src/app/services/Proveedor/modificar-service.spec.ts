@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ObtenerServiceProveedor } from './obtener-service';
+import { ModificarService } from './modificar-service';
 
-describe('ObtenerService', () => {
-  let service: ObtenerServiceProveedor;
+describe('ModificarService', () => {
+  let service: ModificarService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ObtenerServiceProveedor);
+    service = TestBed.inject(ModificarService);
   });
 
   it('should be created', () => {

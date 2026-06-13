@@ -1,1 +1,55 @@
-<p>agregar works!</p>
+<div class="container py-5">
+  <div class="card shadow-lg p-4 mx-auto" style="max-width: 500px;">
+    
+    <h2 class="text-center text fw-bold mb-4">
+      Dar de Alta a Proveedor
+    </h2>
+
+    <form #proveedorForm="ngForm" (ngSubmit)="agregarProveedor()">
+
+      <div class="mb-3">
+        <label class="form-label fw-bold">Nombre</label>
+        <input
+          type="text"
+          class="form-control"
+          name="nombre"
+          [(ngModel)]="proveedor.nombre"
+          required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-bold">Correo</label>
+        <input
+          type="text"
+          class="form-control"
+          name="correo"
+          [(ngModel)]="proveedor.correo"
+          required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-bold">Telefono</label>
+        <input
+          type="text"
+          class="form-control"
+          name="tel"
+          [(ngModel)]="proveedor.tel"
+          required>
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-pink w-100">
+        Guardar Proveedor
+      </button>
+
+    </form>
+
+    @if (mensaje) {
+      <div class="alert alert-success mt-3 text-center">
+        {{ mensaje }}
+      </div>
+    }
+
+  </div>
+</div>

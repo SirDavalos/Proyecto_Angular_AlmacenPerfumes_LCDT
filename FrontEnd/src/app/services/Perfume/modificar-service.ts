@@ -8,8 +8,9 @@ import { HttpClient } from '@angular/common/http';
 })
 
 export class ModificarService {
+  private BASEURL: string = 'http://localhost:3000'
   private http = inject(HttpClient);
-  private url: string = 'https://proyecto-angular-almacenperfumes-lcdt.onrender.com/api/perfumes/actualizarPerfume';
+  private url: string = `${this.BASEURL}/api/perfumes/actualizarPerfume`;
 
   modificarPerfume(perfume: Perfume): Observable<any> {
     return this.http.put(`${this.url}/${perfume.id}`, perfume);

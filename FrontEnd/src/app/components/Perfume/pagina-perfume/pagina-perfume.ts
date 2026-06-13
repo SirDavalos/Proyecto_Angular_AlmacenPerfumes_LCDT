@@ -1,10 +1,10 @@
 import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Perfume } from '../../interfaces/perfume';
-import { ObtenerService } from '../../services/Perfume/obtener-service';
-import { ModificarService } from '../../services/Perfume/modificar-service';
-import { EliminarService } from '../../services/Perfume/eliminar-service';
+import { Perfume } from '../../../interfaces/perfume';
+import { ObtenerService } from '../../../services/Perfume/obtener-service';
+import { ModificarService } from '../../../services/Perfume/modificar-service';
+import { EliminarService } from '../../../services/Perfume/eliminar-service';
 import { CurrencyPipe } from '@angular/common';
 
 @Component({
@@ -52,7 +52,7 @@ export class PaginaPerfume {
     });
 
     // Servicio que obtiene los datos con la id
-    this.obtenerDB.getDato(this.perfumeID).subscribe({
+    this.obtenerDB.getSoloDato(this.perfumeID).subscribe({
       next: (respuesta: Perfume) => {
         this.perfumeObtenido = respuesta;
         this.cdr.markForCheck();
@@ -122,7 +122,7 @@ export class PaginaPerfume {
   }
 
   goModificar(){
-    this.router.navigate(['/modificar'], {
+    this.router.navigate(['/perfumes/modificar'], {
       queryParams: { id: this.perfumeObtenido.id }
     });
   }

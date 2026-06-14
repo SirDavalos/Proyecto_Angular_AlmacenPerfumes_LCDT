@@ -32,9 +32,15 @@ async function deleteProveedores(IDproveedores) {
     return result.affectedRows;
 }
 
+async function getProveedorById(IDproveedores) {
+    const [rows] = await pool.query('SELECT * FROM proveedores WHERE IDproveedores = ?', [IDproveedores]);
+    return rows[0];
+}
+
 module.exports = {
     getAllProveedores,
     insertProveedores,
     updateProveedores,
-    deleteProveedores
+    deleteProveedores,
+    getProveedorById
 }

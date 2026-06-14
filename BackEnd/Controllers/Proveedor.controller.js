@@ -1,6 +1,6 @@
 const ProveedorModel = require('../model/ProveedorModel.js');
 // GET
-const getProveedor = async (req, res) => {
+const getProveedores = async (req, res) => {
     try {
         const Proveedores = await ProveedorModel.getAllProveedores();
         res.json(Proveedores);
@@ -61,9 +61,25 @@ const deleteProveedor = async (req, res) => {
   } 
 };
 
+const getProveedorById = async (req, res) => { 
+  try { 
+    const { id } = req.params; 
+    const proveedor = await ProveedorModel.getProveedorById(id); 
+ 
+    if (!proveedor) 
+      return res.status(404).json({ mensaje: 'Proveedor no encontrado' }); 
+ 
+    res.json(proveedor); 
+  } catch (error) { 
+    console.error('Error al obtener perfume:', error); 
+    res.status(500).json({ mensaje: 'Error al obtener perfume' }); 
+  } 
+};
+
 module.exports = {
-    getProveedor,
+    getProveedores,
     postProveedores,
     updateProveedores,
-    deleteProveedor
+    deleteProveedor,
+    getProveedorById
 }

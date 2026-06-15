@@ -15,7 +15,7 @@ const postProveedores = async (req, res) => {
   try { 
     console.log(req.body); 
     const { nombre, correo, telefono } = req.body; 
-    if (!nombre || !correo || !telefono) 
+    if ( !nombre || !correo || !telefono) 
       return res.status(400).json({ mensaje: 'Faltan datos obligatorios' }); 
 
     console.log("1"); 

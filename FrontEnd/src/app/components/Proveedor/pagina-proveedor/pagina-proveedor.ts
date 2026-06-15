@@ -24,7 +24,7 @@ export class PaginaProveedor {
     id: 0,
     nombre: '',
     correo: '',
-    tel: ''
+    telefono: ''
   };
   loadedPer: boolean = false;
   mensaje: string = '';

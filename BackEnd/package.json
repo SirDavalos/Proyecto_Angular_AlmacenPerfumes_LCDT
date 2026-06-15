@@ -18,5 +18,8 @@
     "express": "^5.2.1",
     "mysql2": "^3.22.0",
     "promise": "^8.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
   }
 }

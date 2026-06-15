@@ -13,7 +13,7 @@ async function getAllProveedores() {
 
 async function insertProveedores(nombre, correo, telefono) {
     const [result] = await pool.query(
-        'INSERT INTO proveedores (nombre, correo, telefono) VALUES (?, ?, ?, ?)',
+        'INSERT INTO proveedores (nombre, correo, telefono) VALUES (?, ?, ?)',
         [nombre, correo, telefono]
     );
     return result.affectedRows;

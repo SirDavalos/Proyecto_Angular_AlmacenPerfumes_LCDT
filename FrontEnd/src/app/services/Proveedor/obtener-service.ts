@@ -18,7 +18,7 @@ export class ObtenerServiceProveedor {
         id: item.id ?? 0,
         nombre: item.nombre ?? '',
         correo: item.correo ?? '',
-        tel: item.tel ?? ''
+        telefono: item.telefono ?? ''
       })))
     );
   }
@@ -29,7 +29,7 @@ export class ObtenerServiceProveedor {
         id: item.id ?? 0,
         nombre: item.nombre ?? '',
         correo: item.correo ?? '',
-        tel: item.tel ?? ''
+        telefono: item.telefono ?? ''
       })));
   }
 }

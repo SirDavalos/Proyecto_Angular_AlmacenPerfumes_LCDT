@@ -13,6 +13,7 @@ export class AgregarServiceProveedor {
   private url: string = `${this.BASEURL}/api/proveedores/insertProveedor`;
 
   agregarProveedor(proveedor: Proveedor): Observable<any> {
+    console.log(proveedor)
     const { id, ...proveedorNuevo} = proveedor
     return this.http.post(this.url, proveedorNuevo);
   }

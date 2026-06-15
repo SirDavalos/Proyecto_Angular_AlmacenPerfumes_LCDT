@@ -1,6 +1,7 @@
 .navbar{
     background-color: var(--primary-color-subtle);
     color: var(--light-color);
+    z-index: 999999999999999;
 }
 
 .nav-link{

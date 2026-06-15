@@ -7,8 +7,6 @@
     
         <!-- Muestra todos los productos para seleccionar 1 a modificar -->
         @if (allSupplier.length > 0) {
-            <!-- Aqui se encuentra el componente de filtro -->
-            <app-filtro [allSupplier]="allSupplier" (showSearch)="showResultEvent($event)"></app-filtro>
 
             <!-- Tabla con todos los articulos -->
             <div class="table-responsive">
@@ -30,7 +28,7 @@
                                         <td>{{ item.id }}</td>
                                         <td>{{ item.nombre }}</td>
                                         <td>{{ item.correo }}</td>
-                                        <td>{{ item.tel }}</td>
+                                        <td>{{ item.telefono }}</td>
                                         <td><button class="btn btn-danger" (click)="selectModProv(item.id)">Modificar</button></td>
                                     </tr>
                                 }
@@ -39,17 +37,17 @@
                                     <td>{{ resultSearchSolo!.id }}</td>
                                     <td>{{ resultSearchSolo!.nombre }}</td>
                                     <td>{{ resultSearchSolo!.correo }}</td>
-                                    <td>{{ resultSearchSolo!.tel }}</td>
+                                    <td>{{ resultSearchSolo!.telefono }}</td>
                                     <td><button class="btn btn-danger" (click)="selectModProv(resultSearchSolo!.id)">Modificar</button></td>
                                 </tr>
                             }
                         } @else {
-                            @for (item of allProduct; track $index) {
+                            @for (item of allSupplier; track $index) {
                                 <tr>
                                     <td>{{ item.id }}</td>
                                     <td>{{ item.nombre }}</td>
                                     <td>{{ item.correo }}</td>
-                                    <td>{{ item.tel }}</td>
+                                    <td>{{ item.telefono }}</td>
                                     <td><button class="btn btn-danger" (click)="selectModProv(item.id)">Modificar</button></td>
                                 </tr>
                             }
@@ -74,15 +72,15 @@
                 <!-- Correo -->
                 <div class="mt-3">
                     <label for="mod-2" class="form-label">Correo</label><br>
-                    <input type="text" class="form-control" id="mod-2" formControlName="precio">
+                    <input type="text" class="form-control" id="mod-2" formControlName="correo">
                 </div>
                 <!-- Telefono -->
                 <div class="mt-3">
                     <label for="mod-3" class="form-label">Telefono</label><br>
-                    <input type="text" class="form-control" id="mod-3" formControlName="cantidad">
+                    <input type="text" class="form-control" id="mod-3" formControlName="telefono">
                 </div>
 
-                <button class="btn btn-outline-red w-100 my-3" (click)="selectModProd(modID)">Reestablecer datos antes de modificar proveedor</button>
+                <button class="btn btn-outline-red w-100 my-3" (click)="selectModProv(modID)">Reestablecer datos antes de modificar proveedor</button>
                 <button class="btn btn-outline-red w-100" type="submit">Modificar este proveedor</button>
             </form>
             </div>

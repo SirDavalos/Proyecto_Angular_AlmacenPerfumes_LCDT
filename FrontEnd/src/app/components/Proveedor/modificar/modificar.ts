@@ -59,7 +59,8 @@ export class ModificarProveedor {
   }
 
   public selectModProv(id: number) {
-    let modProveedor = this.allSupplier.find((prod) => prod.id == id);
+    let modProveedor = this.allSupplier.find((prov) => prov.id == id);
+    console.log(modProveedor);
 
     this.modID = id;
 
@@ -82,8 +83,8 @@ export class ModificarProveedor {
         ]
       ],
 
-      tel: [
-        modProveedor!.tel,
+      telefono: [
+        modProveedor!.telefono,
         [
           Validators.required,
           Validators.minLength(12),
@@ -101,7 +102,7 @@ export class ModificarProveedor {
       id: this.modID,
       nombre: this.modificarForm.value.nombre,
       correo: this.modificarForm.value.correo,
-      tel: this.modificarForm.value.tel
+      telefono: this.modificarForm.value.telefono
     };
 
     this.modificarDB.modificarProveedor(newProveedor).subscribe({

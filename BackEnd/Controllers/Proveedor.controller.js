@@ -32,7 +32,7 @@ const postProveedores = async (req, res) => {
 const updateProveedores = async (req, res) => { 
   try { 
     const { id } = req.params; 
-    const {nombre, correo, telefono } = req.body; 
+    const { nombre, correo, telefono } = req.body; 
  
     const filas = await ProveedorModel.updateProveedores(id, nombre, correo, telefono); 
     if (filas === 0) 

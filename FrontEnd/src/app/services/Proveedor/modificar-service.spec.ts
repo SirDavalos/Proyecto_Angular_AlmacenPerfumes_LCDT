@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ModificarService } from './modificar-service';
+import { ModificarServiceProveedor } from './modificar-service';
 
 describe('ModificarService', () => {
-  let service: ModificarService;
+  let service: ModificarServiceProveedor;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ModificarService);
+    service = TestBed.inject(ModificarServiceProveedor);
   });
 
   it('should be created', () => {

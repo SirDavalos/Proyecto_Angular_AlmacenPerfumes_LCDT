@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { EliminarService } from './eliminar-service';
+import { EliminarServiceProveedor } from './eliminar-service';
 
 describe('EliminarService', () => {
-  let service: EliminarService;
+  let service: EliminarServiceProveedor;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(EliminarService);
+    service = TestBed.inject(EliminarServiceProveedor);
   });
 
   it('should be created', () => {

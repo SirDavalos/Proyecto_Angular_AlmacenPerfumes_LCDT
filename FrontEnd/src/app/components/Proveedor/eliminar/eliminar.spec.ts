@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Eliminar } from './eliminar';
+import { EliminarProveedor } from './eliminar';
 
 describe('Eliminar', () => {
-  let component: Eliminar;
-  let fixture: ComponentFixture<Eliminar>;
+  let component: EliminarProveedor;
+  let fixture: ComponentFixture<EliminarProveedor>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Eliminar],
+      imports: [EliminarProveedor],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(Eliminar);
+    fixture = TestBed.createComponent(EliminarProveedor);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

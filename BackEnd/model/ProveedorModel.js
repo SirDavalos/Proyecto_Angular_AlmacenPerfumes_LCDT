@@ -11,29 +11,29 @@ async function getAllProveedores() {
     }
 }
 
-async function insertProveedores(IDproveedores, Nombre, correo, telefono) {
+async function insertProveedores(nombre, correo, telefono) {
     const [result] = await pool.query(
-        'INSERT INTO proveedores (IDproveedores, Nombre, Correo, Telefono) VALUES (?, ?, ?, ?)',
-        [IDproveedores, Nombre, correo, telefono]
+        'INSERT INTO proveedores (nombre, correo, telefono) VALUES (?, ?, ?, ?)',
+        [nombre, correo, telefono]
     );
     return result.affectedRows;
 }
 
-async function updateProveedores(IDproveedores, Nombre, correo, telefono) {
+async function updateProveedores(id, nombre, correo, telefono) {
     const [result] = await pool.query(
-        'UPDATE proveedores SET Nombre = ?, Correo = ?, Telefono = ? WHERE IDproveedores = ?',
-        [Nombre, correo, telefono, IDproveedores]
+        'UPDATE proveedores SET nombre = ?, correo = ?, telefono = ? WHERE id = ?',
+        [nombre, correo, telefono, id]
     );
     return result.affectedRows;
 }
 
-async function deleteProveedores(IDproveedores) {
-    const [result] = await pool.query('DELETE FROM proveedores WHERE IDproveedores = ?', [IDproveedores]);
+async function deleteProveedores(id) {
+    const [result] = await pool.query('DELETE FROM proveedores WHERE id = ?', [id]);
     return result.affectedRows;
 }
 
-async function getProveedorById(IDproveedores) {
-    const [rows] = await pool.query('SELECT * FROM proveedores WHERE IDproveedores = ?', [IDproveedores]);
+async function getProveedorById(id) {
+    const [rows] = await pool.query('SELECT * FROM proveedores WHERE id = ?', [id]);
     return rows[0];
 }
 

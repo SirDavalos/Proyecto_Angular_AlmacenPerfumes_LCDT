@@ -17,7 +17,7 @@ export class AgregarProveedor {
     id: 0,
     nombre: '',
     correo: '',
-    tel: ''
+    telefono: ''
   };
 
   mensaje: string = '';
@@ -35,7 +35,7 @@ export class AgregarProveedor {
           id: 0,
           nombre: '',
           correo: '',
-          tel: ''
+          telefono: ''
         };
 
         setTimeout(() => {

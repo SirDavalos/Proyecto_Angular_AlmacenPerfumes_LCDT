@@ -23,15 +23,15 @@ export class ObtenerProveedor {
   showRes: boolean = false;
 
   constructor() { 
-    // this.getAll.getDatos().subscribe({
-    //   next: (respuesta: Proveedor[]) => {
-    //     this.AllProveed = respuesta;
-    //     this.cdr.markForCheck();
-    //   },
-    //   error: (error: any) =>{
-    //     console.error('Error al recuperar datos', error);
-    //   }
-    // });
+    this.getAll.getDatos().subscribe({
+      next: (respuesta: Proveedor[]) => {
+        this.AllProveed = respuesta;
+        this.cdr.markForCheck();
+      },
+      error: (error: any) =>{
+        console.error('Error al recuperar datos', error);
+      }
+    });
   }
 
   //Funciones para resultados

@@ -5,7 +5,7 @@ const router = express.Router();
 const {getProveedores, postProveedores, updateProveedores, deleteProveedor, getProveedorById } = require("../Controllers/Proveedor.controller.js");
 
 router.get("/getProveedores", getProveedores);
-router.post("/insertProovedor", postProveedores);
+router.post("/insertProveedor", postProveedores);
 router.put("/updateProveedores/:id", updateProveedores);
 router.delete("/borrarProveedor/:id", deleteProveedor);
 router.get("/obtenerProveedor/:id", getProveedorById);

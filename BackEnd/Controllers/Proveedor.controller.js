@@ -14,12 +14,12 @@ const getProveedores = async (req, res) => {
 const postProveedores = async (req, res) => { 
   try { 
     console.log(req.body); 
-    const { IDproveedores, Nombre, correo, telefono } = req.body; 
-    if (!IDproveedores || !Nombre || !correo || !telefono) 
+    const { nombre, correo, telefono } = req.body; 
+    if ( !nombre || !correo || !telefono) 
       return res.status(400).json({ mensaje: 'Faltan datos obligatorios' }); 
 
     console.log("1"); 
-    const fila_insertada = await ProveedorModel.insertProveedores(IDproveedores, Nombre, correo, telefono); 
+    const fila_insertada = await ProveedorModel.insertProveedores(nombre, correo, telefono); 
     res.status(201).json({ mensaje: 'Proveedor agregado', fila_insertada }); 
     console.log("2"); 
   } catch (error) { 
@@ -32,9 +32,9 @@ const postProveedores = async (req, res) => {
 const updateProveedores = async (req, res) => { 
   try { 
     const { IDproveedores } = req.params; 
-    const {Nombre, correo, telefono } = req.body; 
+    const {nombre, correo, telefono } = req.body; 
  
-    const filas = await ProveedorModel.updateProveedores(IDproveedores, Nombre, correo, telefono); 
+    const filas = await ProveedorModel.updateProveedores(IDproveedores, nombre, correo, telefono); 
     if (filas === 0) 
       return res.status(404).json({ mensaje: 'Proveedor no encontrado' }); 
  
